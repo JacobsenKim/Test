@@ -13,4 +13,4 @@ data:
 service: huawei_solar.set_tou_periods
 data:
   device_id: 2178dc8756cab8309ba44fb63351f49a
-  periods: 12:00-14:00/1234567/-
+  periods: 17:00-21:00/1234567/-
