@@ -8,4 +8,5 @@ homeassistant:
 homeassistant:
   packages:
     minpakke: !include packages/minpakke/minpakkefil.yaml
+    minpakke_fil2: !include packages/minpakke/minpakkefil2.yaml
     minpakke2: !include packages/minpakke2/minpakkefil.yaml
