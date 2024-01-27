@@ -67,6 +67,10 @@ chmod +x post-commit
 
 ls -la
 
+cd ..
+cd ..
+git status
+
 -- Code --
 
 #!/bin/bash
