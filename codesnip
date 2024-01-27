@@ -58,13 +58,14 @@ git show v1.5.0-beta
 .git/hooks/post-commit
 
 git init
-cd .git
-cd hooks
+cd .git/hooks
 nano post-commit
 
 Insert: -- Code --
 
-chmod +X post-commit
+chmod +x post-commit
+
+ls -la
 
 -- Code --
 
