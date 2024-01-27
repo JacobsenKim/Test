@@ -7,4 +7,4 @@ SECURITY.md
 
 LICENSE
 
-post-commit slet
+post-commit sletet
