@@ -1,0 +1,10 @@
+code snip
+
+
+
+/developer-tools/service
+
+service: utility_meter.calibrate
+data:
+  entity_id: sensor.monthly_yield_total_energy
+  value: "33.48821"  
