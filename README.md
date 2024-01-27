@@ -6,3 +6,5 @@ Test2
 SECURITY.md
 
 LICENSE
+
+post-commit
