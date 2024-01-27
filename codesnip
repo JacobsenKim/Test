@@ -55,3 +55,69 @@ Complete details can be viewed using:
 git show v1.5.0-beta
 
 ############################################
+
+.git/hooks/post-commit
+
+
+#!/bin/bash
+
+# https://stackoverflow.com/a/46972376
+# This script will be executed after commit in placed in .git/hooks/post-commit
+
+# Semantic Versioning 2.0.0 guideline
+# 
+# Given a version number MAJOR.MINOR.PATCH, increment the:
+# MAJOR version when you make incompatible API changes,
+# MINOR version when you add functionality in a backwards-compatible manner, and
+# PATCH version when you make backwards-compatible bug fixes.
+#
+#https://stackoverflow.com/a/71405580
+# For posterity, this version adapted from the above.
+# -Requires a comment
+# -Ensures tags are pulled from the remote
+# -Redirects stderr to not pollute the shell.
+# -Prepends 'v' onto versions (may not be required by the OP but others may need this).
+# -Initializes v0.0.0 if none exist.
+# -Pushes back to origin
+#######################################################################################
+
+if [[ -z "$1" ]]; then
+    echo "ERROR: arg must be a description of the release in quotes"
+    exit 1
+fi
+DESCRIPTION=$1
+
+# ensure local tags are current
+git fetch --tags origin
+
+#get highest tag number
+HIGHESTVERSION=$(git tag -l --sort -version:refname | head -n 1 2> /dev/null) 
+set -e
+VERSION=${HIGHESTVERSION:-'v0.0.0'}
+
+REMOVE="${VERSION%%v*}"; VERSION="${VERSION#*v}"
+MAJOR="${VERSION%%.*}"; VERSION="${VERSION#*.}"
+MINOR="${VERSION%%.*}"; VERSION="${VERSION#*.}"
+PATCH="${VERSION%%.*}"; VERSION="${VERSION#*.}"
+
+#Increase version
+PATCH=$((PATCH+1))
+
+#Get current hash and see if it already has a tag
+GIT_COMMIT=$(git rev-parse HEAD)
+NEEDS_TAG=$(git describe --contains $GIT_COMMIT 2> /dev/null) && exit_status=0 || exit_status=$?
+
+#Only tag if no tag already (would be better if the git describe command above could have a silent option)
+if [[ -z "$NEEDS_TAG" && ! $exit_status -eq 0 ]]; then
+    #Create new tag
+    NEW_TAG="v$MAJOR.$MINOR.$PATCH"
+    echo "Updating to $NEW_TAG"
+    git tag -a $NEW_TAG -m "$DESCRIPTION"
+    echo "Tagged with $NEW_TAG"
+    git push origin $NEW_TAG
+    git -c advice.detachedHead=false checkout $NEW_TAG
+    echo "Checkout release"
+    git checkout $NEW_TAG
+else
+    echo "Already a tag $HIGHESTVERSION on this commit"
+fi
