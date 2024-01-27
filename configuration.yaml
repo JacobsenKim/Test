@@ -1,11 +1,11 @@
-#homeassistant:
-#  packages:
-#    minpakke !include_dir_named packages/minpakke
-#    minpakke2 !include_dir_named packages/minpakke2
-#
-# Or if you use it at file level
-#
-#homeassistant:
-#  packages:
-#    minpakke: !include packages/minpakke/minpakkefil.yaml
-#    minpakke2: !include packages/minpakke2/minpakkefil.yaml
+homeassistant:
+  packages:
+    minpakke !include_dir_named packages/minpakke
+    minpakke2 !include_dir_named packages/minpakke2
+
+ Or if you use it at file level
+
+homeassistant:
+  packages:
+    minpakke: !include packages/minpakke/minpakkefil.yaml
+    minpakke2: !include packages/minpakke2/minpakkefil.yaml
