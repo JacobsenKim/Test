@@ -3,7 +3,7 @@ homeassistant:
     minpakke !include_dir_named packages/minpakke
     minpakke2 !include_dir_named packages/minpakke2
 
- Or if you use it at file level
+# Or if you use it at file level
 
 homeassistant:
   packages:
