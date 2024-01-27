@@ -1,5 +1,8 @@
 code snip
-device_id 2 ""
+
+device_id 2 "" 
+ERROR: arg must be a description of the release in quotes
+
 
 /developer-tools/service
 
