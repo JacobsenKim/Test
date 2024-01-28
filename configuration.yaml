@@ -2,13 +2,14 @@
 
 homeassistant:
   packages:
-    minpakke !include_dir_named packages/minpakke
-    minpakke2 !include_dir_named packages/minpakke2
+#    minpakke !include_dir_named packages/minpakke
+#    minpakke2 !include_dir_named packages/minpakke2
 
 # Or if used at file level
 
 homeassistant:
   packages:
-    minpakke: !include packages/minpakke/minpakkefil.yaml
-    minpakke_fil2: !include packages/minpakke/minpakkefil2.yaml
-    minpakke2: !include packages/minpakke2/minpakkefil.yaml
+#    minpakke: !include packages/minpakke/minpakkefil.yaml
+#    minpakke_fil2: !include packages/minpakke/minpakkefil2.yaml
+#    minpakke2: !include packages/minpakke2/minpakkefil.yaml
+    huawei_solar_pees_test0: !include packages/huawie_solar_pees/huawei_solar_pees_test0.yaml
