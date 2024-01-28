@@ -2,6 +2,7 @@
 #
 # Af Kim Jacobsen
 #
+# v0.0.2 - Første run - card lavet
 # v0.0.1 - test0_ = MED float(0) UDEN "periodically resetting: false"
 #
 # Til at teste float og float(0) med utility-meter samt periodically resetting: false
@@ -35,6 +36,8 @@
 # Kopier denne kode og indsæt den i filen gem
 #
 # I /homeassistant/configuration.yaml kopier/indsæt
+#
+#
 #homeassistant:
 #  packages:
 #    huawei_solar_pees_test0: !include packages/huawie_solar_pees/huawei_solar_pees_test0.yaml
@@ -44,20 +47,30 @@
 #
 # Her test0_ med float(0)
 sensor:
-    # Kilde: sensor.power_house_load
+    # Kilde: sensor.test0_power_house_load
     #state_class: measurement
     #unit_of_measurement: W
     #device_class: power
     #friendly_name: Power House Load
 
   - platform: integration
-    source: sensor.power_house_load
+    source: sensor.test0_power_house_load
     name: "Test0 Energy House Load"
     unique_id: test0_energy_house_load
     round: 6
     unit_prefix: k
     unit_time: h
     method: left
+
+  - platform: integration
+    source: sensor.test0_power_import
+    name: "test0_Energy Import"
+    unique_id: test0_energy_import
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+
 
 template:
   - sensor:
@@ -88,6 +101,31 @@ template:
         state: >
           {{ states('sensor.test0_power_inverter_1_input') | float +
           states('sensor.test0_power_inverter_2_input') | float }}
+
+
+      - name: "test0_Power House Load"
+        unique_id: test0_power_house_load
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        state: >
+          {{ (
+          states('sensor.test0_power_inverter_1_input') | float +
+          states('sensor.test0_power_inverter_2_input') | float -
+          states('sensor.power_meter_active_power') | float(0) -
+          states('sensor.battery_charge_discharge_power') | float(0)
+          , 0 ) | max }}
+
+      - name: "test0_Power Import"
+        unique_id: test0_power_import
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        state: >
+          {{ (
+          states('sensor.power_meter_active_power') | float(0)
+          , 0 ) | min | abs }}
+
 
       # TEMPLATE TRIGGER SENSORS
       # kommer fra sensor.power_house_load ---- inverter -- Test0 Energy House Load
