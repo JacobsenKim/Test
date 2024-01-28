@@ -1,0 +1,191 @@
+# huawei_solar_pees_test0.yaml
+#
+# Af Kim Jacobsen
+#
+# v0.0.1 - test0_ = MED float(0) UDEN "periodically resetting: false"
+#
+# Til at teste float og float(0) med utility-meter samt periodically resetting: false
+#
+# alle sensore er skiftet ud med "test_" eller "test_0" eller "test0f_" foran så det ikke laver balade med huawei_solar_pees og er neme at søge på "test"
+# test_ = UDEN float(0) UDEN "periodically resetting: false"
+# test0_ = MED float(0) UDEN "periodically resetting: false"
+# test0f_ = MED float(0) MED "periodically resetting: false"
+#
+# Da jeg så at flere grund sensor stadig har float(0) i huawei_solar_pees har jeg lavet denne test fil uafhængig af huawei_solar_pees, så man får samme resultat uanset vilken version af huawei_solar_pees man har
+# Denne test fil vil så blive lavet i en test uden _0 i alle sensor så har vi 2 ens til at teste med og uden float(0) uden at ændringer i huawei_solar_pees forsyre testen.
+# Det er kun øverste level der får float(0), benytter ikke float(0) på sensor der allerede er med float(0)
+#
+#
+################### revideres ###################################
+# Uden at det går ud over huawei_solar_pees, da alle sensor i denne test pakke er lavet med andet navn men bruger sensore fra huawei_solar_pees
+# Sensor og kode er taget fra https://github.com/JensenNick/huawei_solar_pees/blob/main/packages/huawei_solar_pees.yaml
+# Og denne test fil kræver at du allerede har overstående pakke oppe at køre ellers giver det ikke mening at køre denne test pakke.
+################# END revideres #################################
+
+#
+# Energi sensor brugt
+#
+# sensor.nordpool_kwh_dk1_dkk_2_095_025
+#
+# søg og udskift med din sensor
+#
+# sensor.energi_data_service
+#
+#homeassistant:
+#  packages:
+#    huawei_solar_pees_test0: !include packages/huawie_solar_pees/huawei_solar_pees_test0.yaml
+
+
+##### Grund sensore
+#
+# Her test0_ med float(0)
+sensor:
+    # Kilde: sensor.power_house_load
+    #state_class: measurement
+    #unit_of_measurement: W
+    #device_class: power
+    #friendly_name: Power House Load
+
+  - platform: integration
+    source: sensor.power_house_load
+    name: "Test0 Energy House Load"
+    unique_id: test0_energy_house_load
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+
+template:
+  - sensor:
+      ## ---------------------------------
+      ## Huawei Solar PEES - Power Sensors
+      - name: "Test0 Power Inverter #1 Input"
+        unique_id: test0_power_inverter_1_input
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        state: >
+          {{ states('sensor.inverter_input_power') | float(0) }}
+
+      - name: "Test0 Power Inverter #2 Input"
+        unique_id: test0_power_inverter_2_input
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        state: >
+          {{ states('sensor.inverter_input_power_2') | float(0) }}
+
+####### her benyttes ikke float(0) da vi ovenfor har defineret de 2 sensor med float(0) ###############
+      - name: "Test0 Power Inverter Input Total"
+        unique_id: test0_power_inverter_input_total
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        state: >
+          {{ states('sensor.test0_power_inverter_1_input') | float +
+          states('sensor.test0_power_inverter_2_input') | float }}
+
+      # TEMPLATE TRIGGER SENSORS
+      # kommer fra sensor.power_house_load ---- inverter -- Test0 Energy House Load
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.test0_energy_house_load
+    sensor:
+      - name: "Test0 House Load - Cost"
+        unique_id: test0_house_load_cost
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
+          {% set meter = states('sensor.test0_energy_house_load') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.test0_energy_house_load') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+
+
+
+##### END Grund sensore
+
+# --------------
+# UTILITY METERS
+# --------------
+# Utility meter er lavet med:
+#
+# test0_ = UDEN "periodically resetting: false"
+#
+utility_meter:
+  ### House Load
+  #### Energy
+  test0_hourly_house_load_energy:
+    source: sensor.test0_energy_house_load
+    name: "test0_Hourly House Load (Energy)"
+    cycle: hourly
+  test0_daily_house_load_energy:
+    source: sensor.test0_energy_house_load
+    name: "test0_Daily House Load (Energy)"
+    cycle: daily
+  test0_monthly_house_load_energy:
+    source: sensor.test0_energy_house_load
+    name: "test0_Monthly House Load (Energy)"
+    cycle: monthly
+  test0_quarterly_house_load_energy:
+    source: sensor.test0_energy_house_load
+    name: "test0_Quarterly House Load (Energy)"
+    cycle: quarterly
+  test0_yearly_house_load_energy:
+    source: sensor.test0_energy_house_load
+    name: "test0_Yearly House Load (Energy)"
+    cycle: yearly
+
+# kommer fra "Test0 House Load" - Cost --- "sensor.test0_house_load_cost"
+  test0_house_load_cost_2:
+    source: sensor.test0_house_load_cost
+    name: "test0_House Load (Cost)"
+    unique_id: test0_house_load_cost_2
+    delta_values: true
+
+
+#### Cost
+  test0_hourly_house_load_cost:
+    source: sensor.test0_house_load_cost_2
+    name: "test0_Hourly House Load (Cost)"
+    cycle: hourly
+  test0_daily_house_load_cost:
+    source: sensor.test0_house_load_cost_2
+    name: "test0_Daily House Load (Cost)"
+    cycle: daily
+  test0_monthly_house_load_cost:
+    source: sensor.test0_house_load_cost_2
+    name: "test0_Monthly House Load (Cost)"
+    cycle: monthly
+  test0_quarterly_house_load_cost:
+    source: sensor.test0_house_load_cost_2
+    name: "test0_Quarterly House Load (Cost)"
+    cycle: quarterly
+  test0_yearly_house_load_cost:
+    source: sensor.test0_house_load_cost_2
+    name: "test0_Yearly House Load (Cost)"
+    cycle: yearly
+#
+# test0f_ = MED "periodically resetting: false"
+#
+
+
+########## END, THE END ############
