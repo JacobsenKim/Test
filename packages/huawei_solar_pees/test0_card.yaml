@@ -106,6 +106,29 @@
                   - entity: sensor.test0_yearly_house_load_cost
                     name: År
                     format: precision2
+              - entity: sensor.test0_energy_import
+                type: custom:multiple-entity-row
+                icon: mdi:transmission-tower-export
+                name: test0_energy_import
+                state_header: Total
+                secondary_info: false
+                format: precision2
+                entities:
+                  - entity: sensor.test0_hourly_import_energy
+                    name: Time
+                    format: precision2
+                  - entity: sensor.test0_daily_import_energy
+                    name: Dag
+                    format: precision2
+                  - entity: sensor.test0_monthly_import_energy
+                    name: Måned
+                    format: precision2
+                  - entity: sensor.test0_quarterly_import_energy
+                    name: Kvartal
+                    format: precision2
+                  - entity: sensor.test0_yearly_import_energy
+                    name: År
+                    format: precision2
             state_color: true
             title: huawei_solar_pees_test0
         columns: 1
