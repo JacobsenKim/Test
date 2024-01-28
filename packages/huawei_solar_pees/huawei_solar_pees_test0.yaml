@@ -31,6 +31,10 @@
 #
 # sensor.energi_data_service
 #
+# Opret packages/huawie_solar_pees/huawei_solar_pees_test0.yaml
+# Kopier denne kode og indsæt den i filen gem
+#
+# I /homeassistant/configuration.yaml kopier/indsæt
 #homeassistant:
 #  packages:
 #    huawei_solar_pees_test0: !include packages/huawie_solar_pees/huawei_solar_pees_test0.yaml
