@@ -1,0 +1,131 @@
+  - title: huawei_solar_pees_test
+    path: huawei-solar-pees-test
+    type: sidebar
+    badges: []
+    cards:
+      - square: false
+        type: grid
+        cards:
+          - type: gauge
+            entity: sensor.power_meter_active_power
+            min: -12500
+            max: 12500
+            needle: true
+            severity:
+              green: 2000
+              yellow: 0
+              red: -12500
+          - type: gauge
+            entity: sensor.inverter_active_power
+            needle: true
+            severity:
+              green: 3000
+              yellow: 100
+              red: 0
+            min: 0
+            max: 11000
+          - type: gauge
+            entity: sensor.inverter_input_power
+            min: 0
+            max: 11000
+            needle: true
+            severity:
+              green: 3000
+              yellow: 100
+              red: 0
+          - type: gauge
+            entity: sensor.battery_charge_discharge_power
+            min: -2600
+            max: 2600
+            needle: true
+            severity:
+              green: 500
+              yellow: 0
+              red: -2600
+            name: Batteri Aflad/Oplad
+          - type: gauge
+            entity: sensor.battery_state_of_capacity
+            needle: true
+            severity:
+              green: 30
+              yellow: 5
+              red: 0
+            min: 0
+            max: 100
+        columns: 5
+        view_layout:
+          position: main
+      - square: false
+        type: grid
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.test0_energy_house_load
+                type: custom:multiple-entity-row
+                icon: mdi:home-lightning-bolt-outline
+                name: test0_energy_house_load
+                state_header: Total
+                secondary_info: false
+                format: precision2
+                entities:
+                  - entity: sensor.test0_hourly_house_load_energy
+                    name: Time
+                    format: precision2
+                  - entity: sensor.test0_daily_house_load_energy
+                    name: Dag
+                    format: precision2
+                  - entity: sensor.test0_monthly_house_load_energy
+                    name: Måned
+                    format: precision2
+                  - entity: sensor.test0_quarterly_house_load_energy
+                    name: Kvartal
+                    format: precision2
+                  - entity: sensor.test0_yearly_house_load_energy
+                    name: År
+                    format: precision2
+              - entity: sensor.test0_house_load_cost_2
+                type: custom:multiple-entity-row
+                icon: mdi:cash-100
+                name: test0_house_load_cost_2
+                state_header: Total
+                secondary_info: false
+                format: precision2
+                entities:
+                  - entity: sensor.test0_hourly_house_load_cost
+                    name: Time
+                    format: precision2
+                  - entity: sensor.test0_daily_house_load_cost
+                    name: Dag
+                    format: precision2
+                  - entity: sensor.test0_monthly_house_load_cost
+                    name: Måned
+                    format: precision2
+                  - entity: sensor.test0_quarterly_house_load_cost
+                    name: Kvartal
+                    format: precision2
+                  - entity: sensor.test0_yearly_house_load_cost
+                    name: År
+                    format: precision2
+            state_color: true
+            title: huawei_solar_pees_test0
+        columns: 1
+      - square: false
+        type: grid
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.test0_house_load_cost
+                icon: ''
+              - entity: sensor.test0_house_load_cost_2
+              - entity: sensor.test0_power_inverter_1_input
+              - entity: sensor.test0_power_inverter_2_input
+              - entity: sensor.test0_power_inverter_input_total
+              - entity: sensor.test0_energy_import
+              - entity: sensor.test0_power_import
+              - entity: sensor.test0_energy_house_load
+              - entity: sensor.test0_power_house_load
+            state_color: true
+            title: huawei_solar_pees_test0 grund sensor
+        columns: 1
+        view_layout:
+          position: sidebar
