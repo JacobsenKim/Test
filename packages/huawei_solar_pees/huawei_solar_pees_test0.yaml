@@ -55,8 +55,8 @@ sensor:
 
   - platform: integration
     source: sensor.test0_power_house_load
-    name: "Test0 Energy House Load"
-    unique_id: test0_energy_house_load
+    name: "test0_Energy House Load"
+    unique_id: "test0_energy_house_load"
     round: 6
     unit_prefix: k
     unit_time: h
@@ -195,6 +195,30 @@ utility_meter:
     source: sensor.test0_energy_house_load
     name: "test0_Yearly House Load (Energy)"
     cycle: yearly
+
+
+  test0_hourly_import_energy:
+    source: sensor.test0_energy_import
+    name: "test0_Hourly Import (Energy)"
+    cycle: hourly
+  test0_daily_import_energy:
+    source: sensor.test0_energy_import
+    name: "test0_Daily Import (Energy)"
+    cycle: daily
+  test0_monthly_import_energy:
+    source: sensor.test0_energy_import
+    name: "test0_Monthly Import (Energy)"
+    cycle: monthly
+  test0_quarterly_import_energy:
+    source: sensor.test0_energy_import
+    name: "test0_Quarterly Import (Energy)"
+    cycle: quarterly
+  test0_yearly_import_energy:
+    source: sensor.test0_energy_import
+    name: "test0_Yearly Import (Energy)"
+    cycle: yearly
+
+
 
 # kommer fra "Test0 House Load" - Cost --- "sensor.test0_house_load_cost"
   test0_house_load_cost_2:
