@@ -1,11 +1,27 @@
 code snip
 
-device_id 2 "" 
-ERROR: arg must be a description of the release in quotes
+########################################
 
+Template warning: ‘float’ got invalid input ‘unavailable’ when rendering template
 
+########################################
+
+replace float with float(0)
+# TemplateError(‘ZeroDivisionError: float division by zero’) while processing template ‘Template
+
+use an availability_template so no divides by 0 happen.
+
+How do I do that?
+
+solar_percent:
+        value_template: "{{ ((states('sensor.growattmodbus_output_power')|float(0) * 100) / ((states('sensor.power_consumption')|float(1) * 1000) + states('sensor.growattmodbus_output_power')|float(1)))|round(1) }}"
+        unit_of_measurement: '%'
+        friendly_name: Current Solar Percentage Realtime
+        availability_template: "{{ ((states('sensor.power_consumption')|float(0) * 1000) + (states('sensor.growattmodbus_output_power')|float(0))) != 0}}"
+
+#########################################
 /developer-tools/service
-
+#########################################
 service: utility_meter.calibrate
 data:
   entity_id: sensor.monthly_yield_total_energy
