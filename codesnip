@@ -2,7 +2,10 @@ code snip
 
 
 
-https://community.home-assistant.io/t/template-warning-float-unavailable-no-default/351486
+Updating Templates with the new default values in 2021.10.x
+https://community.home-assistant.io/t/updating-templates-with-the-new-default-values-in-2021-10-x/346198
+
+float(0) -- https://community.home-assistant.io/t/template-warning-float-unavailable-no-default/351486
 
 ########################################
 Template warning: ‘float’ got invalid input ‘unavailable’ when rendering template
