@@ -1,6 +1,18 @@
 code snip
 
+###################
+/developer-tools/template
+###################
+# Smid denne her kode ind i Udviklerværktøjer -> Skabelon og du får en laaaaang liste over områder og tilkyttede entiteter:
 
+{% for a in areas() %}
+{{ area_name(a) }}
+===================
+{{ area_entities(a) }}
+{% endfor %}
+
+
+###########################################################
 
 Updating Templates with the new default values in 2021.10.x
 https://community.home-assistant.io/t/updating-templates-with-the-new-default-values-in-2021-10-x/346198
