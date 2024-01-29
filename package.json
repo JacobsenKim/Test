@@ -1,4 +1,3 @@
-{
   "name": "tag-version",
   "displayName": "tag-version",
   "description": "Create tags for your git repository based on your package.json version",
