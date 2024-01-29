@@ -11,7 +11,7 @@ Released version: This changes less often (e.g. semantic versioning)
 People use different schemes as per their need, but semantic versioning is fairly widely used and authored by Tom Preston-Werner, co-founder of GitHub.
 
 Semantic Versioning
-Semantic versioning follows the pattern of X.Y.Z
+Semantic versioning follows the pattern of X.Y.Z  https://semver.org/lang/da/
 
 Or more readable would be [major].[minor].[patch]-[build/beta/rc]
 
@@ -63,7 +63,7 @@ git status
 # This script will be executed after commit in placed in .git/hooks/post-commit
 
 # Semantic Versioning 2.0.0 guideline
-# 
+# https://semver.org/lang/da/
 # Given a version number MAJOR.MINOR.PATCH, increment the:
 # MAJOR version when you make incompatible API changes,
 # MINOR version when you add functionality in a backwards-compatible manner, and
