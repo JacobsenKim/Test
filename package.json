@@ -1,20 +1,60 @@
 {
-    "name": "dit-projekt-navn",
-    "version": "1.0.1",
-    "description": "Beskrivelse af dit projekt",
-    "main": "hovedfil.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/brugernavn/dit-projekt-navn.git"
-    },
-    "keywords": ["nøgleord", "for", "dit", "projekt"],
-    "author": "Dit Navn",
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/brugernavn/dit-projekt-navn/issues"
-    },
-    "homepage": "https://github.com/brugernavn/dit-projekt-navn"
+  "name": "tag-version",
+  "displayName": "tag-version",
+  "description": "Create tags for your git repository based on your package.json version",
+  "version": "0.0.6",
+  "icon": "./img/logo.png",
+  "publisher": "GustavoLopes",
+  "engines": {
+    "vscode": "^1.78.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tag-version.lastTag",
+        "title": "Tag version: update tag version"
+      },
+      {
+        "command": "tag-version.getAuthorLastTag",
+        "title": "Tag version: get author last tag"
+      },
+      {
+        "command": "tag-version.update-package-json",
+        "title": "Tag version: update package.json"
+      }, 
+      {
+        "commmand": "tag-version.deploy-master",
+        "title": "Tag version: deploy master"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.78.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "simple-git": "^3.19.0"
   }
+}
