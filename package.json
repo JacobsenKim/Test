@@ -1,6 +1,6 @@
 {
     "name": "dit-projekt-navn",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Beskrivelse af dit projekt",
     "main": "hovedfil.js",
     "scripts": {
