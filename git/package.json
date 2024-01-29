@@ -1,0 +1,20 @@
+{
+    "name": "dit-projekt-navn",
+    "version": "1.0.0",
+    "description": "Beskrivelse af dit projekt",
+    "main": "hovedfil.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/brugernavn/dit-projekt-navn.git"
+    },
+    "keywords": ["nøgleord", "for", "dit", "projekt"],
+    "author": "Dit Navn",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/brugernavn/dit-projekt-navn/issues"
+    },
+    "homepage": "https://github.com/brugernavn/dit-projekt-navn"
+  }
