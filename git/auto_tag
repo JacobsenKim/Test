@@ -31,7 +31,7 @@ Tags in Git can be used to add a version number.
 git tag -a "v0.0.5-beta" -m "version v0.0.5-beta"
 adds a version tag of v1.5.0-beta to your current Git repository. Every new commit after this will auto-increment tag by appending commit number and commit hash. This can be viewed using the git describe command.
 
-v1.5.0-beta-1-g0c4f33f here -1- is the commit number and 0c4f33f the abbreviation of commit's hash. The g prefix stands for "git".
+v0.0.5-beta-1-g0c4f33f here -1- is the commit number and 0c4f33f the abbreviation of commit's hash. The g prefix stands for "git".
 
 Complete details can be viewed using:
 
