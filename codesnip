@@ -1,9 +1,11 @@
 code snip
 
+
+
+https://community.home-assistant.io/t/template-warning-float-unavailable-no-default/351486
+
 ########################################
-
 Template warning: ‘float’ got invalid input ‘unavailable’ when rendering template
-
 ########################################
 
 replace float with float(0)
@@ -18,6 +20,25 @@ solar_percent:
         unit_of_measurement: '%'
         friendly_name: Current Solar Percentage Realtime
         availability_template: "{{ ((states('sensor.power_consumption')|float(0) * 1000) + (states('sensor.growattmodbus_output_power')|float(0))) != 0}}"
+
+https://community.home-assistant.io/t/availability-template-help-templateerror-zerodivisionerror-float-division-by-zero/565990
+## Percentages in %
+      solar_percent:
+        unit_of_measurement: '%'
+        friendly_name: Current Solar Percentage Realtime
+        value_template: >
+            {% set solar_total_w = states('sensor.power_production_solar_total') | float(0) %}
+            {% set production_w = states('sensor.power_production_w') | float(0) %}
+            {% set consumption_w = states('sensor.power_consumption_w') | float(0) %}
+            {% set consumption_total = states('sensor.power_consumption_total') | float(0) %}
+            {{ [ (solar_total_w * 100) / (consumption_w + solar_total_w), 0 ] | max | round(0) }}
+        availability_template: >
+            {{ states('sensor.power_production_solar_total') | is_number and
+               states('sensor.power_production_w') | is_number and
+               states('sensor.power_consumption_w') | is_number and
+               states('sensor.power_consumption_total') is_number and
+               states('sensor.power_consumption_total') | float(0) + states('sensor.power_consumption_w') | float(0) > 0 }}
+
 
 #########################################
 /developer-tools/service
