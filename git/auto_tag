@@ -191,6 +191,12 @@ gpg --armor --export 3AA5C34371567BD2
 
 Copy key and insert in git hope under settings GPG keys
 
+
+git tag -s $NEW_TAG -m "Version $NEW_TAG"
+git tag -v $NEW_TAG  # Verify the signed tag
+git tag -s 0.0.9 -m "Version 0.0.9"
+git tag -v v0.0.9
+
  --- script ---
 
 #!/bin/bash
@@ -263,6 +269,10 @@ if [ -z "$NEEDS_TAG" ]; then
   echo "Tagged with $NEW_TAG"
   git push --tags
   git push
+#  git tag -s $NEW_TAG -m "Version $NEW_TAG"
+#  git push --tags
+#  git push
+#  git tag -v $NEW_TAG  # Verify the signed tag
 else
   echo "Already a tag on this commit"
 fi
