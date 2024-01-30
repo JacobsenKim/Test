@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/JacobsenKim/Test.git"
   },
-  "keywords": [test],
+  "keywords": ["test"],
   "author": "Kim",
   "license": "MIT",
   "bugs": {
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/JacobsenKim/Test",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/github": "^2.1.1"
+    "@actions/core": "1.2.6",
+    "@actions/github": "2.1.1"
   }
 }
