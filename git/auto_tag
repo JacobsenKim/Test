@@ -118,7 +118,6 @@ gpg --armor --export 3AA5C34371567BD2
 
 git config --global user.signingkey 3AA5C34371567BD2
 
-
 git config --global user.name
 git config --global user.email
 
