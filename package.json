@@ -1,7 +1,7 @@
 {
   "name": "smart-auto-tag",
   "version": "0.0.9",
-  "description": "A Github action to auto tag your commit",
+  "DESCRIPTION": "A Github action to auto tag your commit",
   "main": "index.js",
   "repository": {
     "type": "git",
