@@ -122,14 +122,38 @@ fi
 
 
 ###############################
-Denne virker https://github.com/unegma/bash-functions/blob/main/update.sh
+Denne virker :-D
+Kilde: https://github.com/unegma/bash-functions/blob/main/update.sh
 ###############################
+Testet på https://github.com/codespaces
 
-Kør fra konsol
+############################################
+.git/hooks/post-commit
+############################################
+
+# Den kommer med nogle fejl på npm, jeg har ikke lavet konto og lever med fejlen.
+# Ellers fra konsol
+############### npm pkg fix
+############### npm adduser
+# Andre brug bare komandoer fra konsol
+git tag               # viser alle dine tags.
+git tag -d v0.0.6     # delete tag v0.0.6 # Husk at slet dine tag både her og på git page eller dukker de bare op her igen.
+git status            # status  
+git tag -help         # her finder du mere info.
+
+# Kør fra konsol (terminal):
+
+git init
 cd .git/hooks
+nano post-commit
+
+# Insert: -- script --
+
+chmod +x post-commit
+
 nano package.json
 
-Insert --code--
+# Edit name and description and insert below --code--
 
 {
   "name": "test",
@@ -137,16 +161,28 @@ Insert --code--
   "description": "A Github action to auto tag your commit"
 }
 
+--- code end ---
 
-Gem og kør 
+# I roden af repositories laves en fil "package.json" indsæt overstående og ret til med din tekst i filen og gem.
 
-############### npm pkg fix
-############### npm adduser
+package.json
 
-# try: -v [major, minor, patch]
-./post-commit -v patch
+
+# Gem og kør fra konsol:
+
+./post-commit
+
+# nu laver den forhåbentlig dit første tag, se i output hvordan det er gået og tjek din git page om der er kommet et nyt tag
+
+ --- script ---
 
 #!/bin/bash
+
+# manuel updating from the root of repository 
+# try: -v [major, minor, patch]
+# ./.git/hooks/post-commit -v patch  # 0.0.1  < denne er sat til standard, ellers kører det ikke auto når man commit.
+# ./.git/hooks/post-commit -v minor  # 0.1.0
+# ./.git/hooks/post-commit -v major  # 1.0.0
 
 
 VERSION="patch"  # Default to patch if not specified
