@@ -1,6 +1,6 @@
 {
   "name": "Test",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A Github action to auto tag your commit",
   "main": "index.js",
   "repository": {
