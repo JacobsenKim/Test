@@ -1,6 +1,6 @@
 {
   "name": "test",
-  "version": "v0.0.9",
+  "version": "0.0.9",
   "DESCRIPTION": "A Github action to auto tag your commit",
   "main": "index.js",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "git+https://github.com/JacobsenKim/Test.git"
   },
   "keywords": [test],
-  "author": "Kim J",
+  "author": "Kim",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/JacobsenKim/Test/issues"
