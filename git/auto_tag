@@ -108,6 +108,12 @@ gpg --list-secret-keys --keyid-format=long
 gpg --list-secret-keys --keyid-format=long
 git log --show-signature -1
 
+##
+GIT_TRACE=1 git commit -m "a commit message"
+gpg --quick-generate-key "full name <your-email@domain.com>"
+trace: run_command: gpg --status-fd=2 -bsau 'full name <your-email@domain.com>'
+##
+
 gpg --full-generate-key
 1
 4096
@@ -116,10 +122,11 @@ y
 gpg --list-secret-keys --keyid-format=long
 gpg --armor --export 3AA5C34371567BD2
 
+
 git config --global user.signingkey 3AA5C34371567BD2
 
-git config --global user.name
-git config --global user.email
+#git config --global user.name
+#git config --global user.email
 
 gpg --list-secret-keys --keyid-format LONG
 
@@ -139,6 +146,17 @@ git commit -S --gpg-sign=3AA5C34371567BD2 -m "Your commit message"
 
 
 Copy key and insert in git hope under settings GPG keys
+# https://docs.gitlab.com/ee/user/project/repository/signed_commits/gpg.html#associate-your-gpg-key-with-git
+gpg --list-secret-keys --keyid-format LONG <EMAIL>
+git config --global user.signingkey <KEY ID>
+git commit -S -m "My commit message"
+git config --global commit.gpgsign true
+
+
+gpgconf --kill gpg-agent
+GPG_TTY=$(tty)
+
+
 
 git tag -s $NEW_TAG -m "Version $NEW_TAG"
 git tag -v $NEW_TAG  # Verify the signed tag
