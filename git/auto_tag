@@ -137,11 +137,11 @@ Insert --code--
   "description": "A Github action to auto tag your commit"
 }
 
+
 Gem og kør 
 
-npm pkg fix
-
-
+############### npm pkg fix
+############### npm adduser
 
 # try: -v [major, minor, patch]
 ./post-commit -v patch
