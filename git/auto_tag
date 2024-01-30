@@ -105,6 +105,8 @@ gpg --list-secret-keys --keyid-format=long
 #gpg2 --list-keys --keyid-format LONG
 
 # If you are on version 2.1.17 or greater, paste the text below to generate a GPG key pair.
+gpg --list-secret-keys --keyid-format=long
+git log --show-signature -1
 
 gpg --full-generate-key
 1
@@ -122,29 +124,20 @@ git config --global user.email
 
 gpg --list-secret-keys --keyid-format LONG
 
-git commit -S --gpg-sign=3AA5C34371567BD2 -m "Your commit message"
+#git commit -S --gpg-sign=3AA5C34371567BD2 -m "Your commit message"
 
 
 ############ pas på ##################
 # set
-#git config --global user.name "Your Name"
-#git config --global user.email "your.email@example.com"
+#git config --global user.name 
+#git config --global user.email
 git config user.name "Your Name"
 git config user.email "your.email@example.com"
 git add .
 git commit -m "Your commit message"
 
-git commit -S --gpg-sign=F5BB59DE611CCECD -m "Your commit message"
-######################################
+git commit -S --gpg-sign=3AA5C34371567BD2 -m "Your commit message"
 
-git config user.name
-git config user.email
-
-git config --global user.name "Kim Jacobsen"
-git config --global user.email "craporz@gmail.com"
-git add .
-git commit -m "Your commit message"
-#########################
 
 Copy key and insert in git hope under settings GPG keys
 
@@ -152,6 +145,7 @@ git tag -s $NEW_TAG -m "Version $NEW_TAG"
 git tag -v $NEW_TAG  # Verify the signed tag
 git tag -s 0.0.9 -m "Version 0.0.9"
 git tag -s v0.0.10
+git log --show-signature -1
 git tag -v v0.0.9
 #######################################################################################
 
