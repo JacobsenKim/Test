@@ -127,6 +127,22 @@ Denne virker https://github.com/unegma/bash-functions/blob/main/update.sh
 
 Kør fra konsol
 cd .git/hooks
+nano package.json
+
+Insert --code--
+
+{
+  "name": "test",
+  "version": "0.0.0",
+  "description": "A Github action to auto tag your commit"
+}
+
+Gem og kør 
+
+npm pkg fix
+
+
+
 # try: -v [major, minor, patch]
 ./post-commit -v patch
 
