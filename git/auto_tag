@@ -29,7 +29,8 @@ By using tags:
 Tags in Git can be used to add a version number.
 
 git tag -a "v0.0.5-beta" -m "version v0.0.5-beta"
-adds a version tag of v1.5.0-beta to your current Git repository. Every new commit after this will auto-increment tag by appending commit number and commit hash. This can be viewed using the git describe command.
+adds a version tag of v1.5.0-beta to your current Git repository.
+Every new commit after this will auto-increment tag by appending commit number and commit hash. This can be viewed using the git describe command.
 
 v0.0.5-beta-1-g0c4f33f here -1- is the commit number and 0c4f33f the abbreviation of commit's hash. The g prefix stands for "git".
 
@@ -57,6 +58,7 @@ Testet på https://github.com/codespaces
 git tag               # viser alle dine tags.
 git tag -d v0.0.6     # delete tag v0.0.6 # Husk at slet dine tag både her og på git page eller dukker de bare op her igen.
 git status            # status  
+git show v0.0.5       # 
 git tag -help         # her finder du mere info.
 
 # Kør fra konsol (terminal):
@@ -142,8 +144,13 @@ do
 done
 
 
+# ensure local tags are current
+git fetch --tags origin
+
 #get highest tag number, and add 1.0.0 if doesn't exist
 CURRENT_VERSION=`git describe --abbrev=0 --tags 2>/dev/null`
+#get highest tag number
+HIGHESTVERSION=$(git tag -l --sort -version:refname | head -n 1 2> /dev/null) 
 
 if [[ $CURRENT_VERSION == '' ]]
 then
@@ -191,12 +198,13 @@ if [ -z "$NEEDS_TAG" ]; then
   echo "Tagged with $NEW_TAG"
   git push --tags
   git push
+#  git tag -a $NEW_TAG -m "Version $NEW_TAG"
 #  git tag -s $NEW_TAG -m "Version $NEW_TAG"
+#  git tag -v $NEW_TAG  # Verify the signed tag
 #  git push --tags
 #  git push
-#  git tag -v $NEW_TAG  # Verify the signed tag
 else
-  echo "Already a tag on this commit"
+  echo "Already a tag on this commit $CURRENT_VERSION, High $HIGHESTVERSION"
 fi
 
 exit 0
@@ -205,8 +213,8 @@ exit 0
  --- END script --- --- script --- --- script --- --- script --- --- script --- --- script ---
 
 
-
-
+############################################
+Script virker ikke
 ############################################
 .git/hooks/post-commit
 ############################################
