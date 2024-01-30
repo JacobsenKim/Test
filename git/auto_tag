@@ -125,9 +125,14 @@ fi
 Denne virker
 ###############################
 
+Kør fra konsol
+cd .git/hooks
+# try: -v [major, minor, patch]
+./post-commit -v patch
+
 #!/bin/bash
 
-VERSION="patch"
+VERSION=""
 
 #get parameters
 while getopts v: flag
