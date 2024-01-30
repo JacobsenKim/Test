@@ -136,7 +136,7 @@ git add .
 git commit -m "Your commit message"
 
 git commit -S --gpg-sign=3AA5C34371567BD2 -m "Your commit message"
- 
+
 
 Copy key and insert in git hope under settings GPG keys
 
