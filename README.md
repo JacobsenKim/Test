@@ -8,3 +8,5 @@ SECURITY.md
 LICENSE
 
 post-commit
+
+auto-tag
