@@ -9,4 +9,4 @@ LICENSE
 
 post-commit
 
-auto-tag
+auto-tag GPG 
