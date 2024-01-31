@@ -1,0 +1,236 @@
+###############################
+Denne virker :-D men mangler oprydning.
+Kilde: https://github.com/unegma/bash-functions/blob/main/update.sh
+###############################
+Testet på https://github.com/codespaces
+
+############################################
+.git/hooks/post-commit
+############################################
+# Ellers fra konsol
+# Andre brug bare komandoer fra konsol
+git tag               # viser alle dine tags.
+git tag -d v0.0.6     # delete tag v0.0.6 # Husk at slet dine tag både her og på git page eller dukker de bare op her igen.
+git status            # status  
+git show v0.0.5       # 
+git tag -help         # her finder du mere info.
+
+# Kør fra konsol (terminal):
+
+git init
+cd .git/hooks
+nano post-commit
+
+# Insert: -- script --
+
+chmod +x post-commit
+
+nano package.json
+
+# Edit name and description and insert below --code--
+
+{
+  "name": "test",
+  "version": "0.0.0",
+  "description": "A Github action to auto tag your commit"
+}
+
+--- code end ---
+
+# I roden af repositories laves en fil "package.json" indsæt overstående og ret til med din tekst i filen og gem.
+
+package.json
+
+
+# Gem og kør fra konsol:
+
+./post-commit
+
+# nu laver den forhåbentlig dit første tag, se i output hvordan det er gået og tjek din git page om der er kommet et nyt tag
+
+
+####################################
+virker ikke nu, så spring dette over for nu
+####################################
+
+https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
+
+
+
+################
+$ git tag -s v0.0.10
+
+error: gpg failed to sign the data:
+[GNUPG:] BEGIN_SIGNING
+2024/01/30 23:59:14 error signing commit: error signing commit: error making request: 403 | Author can't be blank, Tree can't be blank, Message contains tag fields, error making request: 403 | Author can't be blank, Tree can't be blank, Message contains tag fields
+
+error: unable to sign the tag
+The tag message has been left in .git/TAG_EDITMSG
+
+Fix:   https://github.com/settings/codespaces
+
+# Then I had to set the environment variables to the values gpg expects:
+
+export GPG_TTY=$(tty)
+echo $GIT_COMMITTER_EMAIL
+export GIT_COMMITTER_NAME="$(git config --get user.name)"
+export GIT_COMMITTER_EMAIL="$(git config --get user.email)"
+# export GIT_COMMITTER_EMAIL="your@email.com"
+
+# Finally, I had to replace the gpg.program in Git and set it to /usr/bin/gpg:
+
+git config --global gpg.program /usr/bin/gpg
+
+##################
+
+https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
+# git config --global --unset gpg.format
+# gpg2 --list-keys --keyid-format LONG
+# If you are on version 2.1.17 or greater, paste the text below to generate a GPG key pair.
+
+gpg --list-secret-keys --keyid-format=long
+git log --show-signature -1
+
+##
+GIT_TRACE=1 git commit -m "a commit message"
+gpg --quick-generate-key "full name <your-email@domain.com>"
+gpg --status-fd=2 -bsau 'full name <your-email@domain.com>'
+##
+
+gpg --full-generate-key
+1
+4096
+0
+y
+gpg --list-secret-keys --keyid-format=long
+gpg --armor --export 3AA5C34371567BD2
+
+git config --global user.signingkey 3AA5C34371567BD2
+
+#git config --global user.name
+#git config --global user.email
+# gpg --list-secret-keys --keyid-format LONG
+#git commit -S --gpg-sign=3AA5C34371567BD2 -m "Your commit message"
+
+
+############ pas på ################## bruges ikke #####
+# set
+#git config --global user.name 
+#git config --global user.email
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
+git add .
+git commit -m "Your commit message"
+git commit -S --gpg-sign=3AA5C34371567BD2 -m "Your commit message"
+
+Copy key and insert in git hope under settings GPG keys
+# https://docs.gitlab.com/ee/user/project/repository/signed_commits/gpg.html#associate-your-gpg-key-with-git
+gpg --list-secret-keys --keyid-format LONG <EMAIL>
+git config --global user.signingkey <KEY ID>
+git commit -S -m "My commit message"
+git config --global commit.gpgsign true
+gpgconf --kill gpg-agent
+GPG_TTY=$(tty)
+# Slut pas på ###############################################################
+
+
+git tag -s $NEW_TAG -m "Version $NEW_TAG"
+git tag -v $NEW_TAG  # Verify the signed tag
+git tag -s 0.0.9 -m "Version 0.0.9"
+git tag -s v0.0.10
+git log --show-signature -1
+git tag -v v0.0.9
+#######################################################################################
+
+
+ --- script --- --- script --- --- script --- --- script --- --- script --- --- script ---
+
+
+#!/bin/bash
+
+# manuel updating from the root of repository 
+# try: -v [major, minor, patch]
+# ./.git/hooks/post-commit -v patch  # 0.0.1  < denne er sat til standard, ellers kører det ikke auto når man commit.
+# ./.git/hooks/post-commit -v minor  # 0.1.0
+# ./.git/hooks/post-commit -v major  # 1.0.0
+
+
+VERSION="patch"  # Default to patch if not specified
+
+#get parameters
+while getopts v: flag
+do
+  case "${flag}" in
+    v) VERSION=${OPTARG};;
+  esac
+done
+
+
+# ensure local tags are current
+git fetch --tags origin
+
+#get highest tag number, and add 1.0.0 if doesn't exist
+CURRENT_VERSION=`git describe --abbrev=0 --tags 2>/dev/null`
+#get highest tag number
+#HIGHESTVERSION=$(git tag -l --sort -version:refname | head -n 1 2> /dev/null) 
+
+if [[ $CURRENT_VERSION == '' ]]
+then
+  CURRENT_VERSION='1.0.0'
+fi
+echo "Current Version: $CURRENT_VERSION"
+
+
+#replace . with space so can split into an array
+CURRENT_VERSION_PARTS=(${CURRENT_VERSION//./ })
+
+#get number parts
+VNUM1=${CURRENT_VERSION_PARTS[0]}
+VNUM2=${CURRENT_VERSION_PARTS[1]}
+VNUM3=${CURRENT_VERSION_PARTS[2]}
+
+if [[ $VERSION == 'major' ]]
+then
+  VNUM1=$((VNUM1+1))
+elif [[ $VERSION == 'minor' ]]
+then
+  VNUM2=$((VNUM2+1))
+elif [[ $VERSION == 'patch' ]]
+then
+  VNUM3=$((VNUM3+1))
+else
+  echo "No version type (https://semver.org/) or incorrect type specified, try: -v [major, minor, patch]"
+  exit 1
+fi
+
+
+#create new tag
+NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
+echo "($VERSION) updating $CURRENT_VERSION to $NEW_TAG"
+
+#get current hash and see if it already has a tag
+GIT_COMMIT=`git rev-parse HEAD`
+NEEDS_TAG=`git describe --contains $GIT_COMMIT 2>/dev/null`
+
+#only tag if no tag already
+#to publish, need to be logged in to npm, and with clean working directory: `npm login; git stash`
+if [ -z "$NEEDS_TAG" ]; then
+#  npm version $NEW_TAG
+#  npm publish --access public
+#  echo "Tagged with $NEW_TAG"
+#  git push --tags
+#  git push
+#  git tag -a $NEW_TAG -m "Version $NEW_TAG" # NON signed tag
+  git tag -s $NEW_TAG -m "Version $NEW_TAG" # signed tag
+  echo "Tagged with signed tag $NEW_TAG"
+  git tag -v $NEW_TAG  # Verify the signed tag
+  git push --tags
+  git push
+else
+  echo "Already a tag on this commit $CURRENT_VERSION, High $HIGHESTVERSION"
+fi
+
+exit 0
+
+
+ --- END script --- --- script --- --- script --- --- script --- --- script --- --- script ---
