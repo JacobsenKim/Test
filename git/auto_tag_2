@@ -12,11 +12,11 @@ Testet på https://github.com/codespaces
 .git/hooks/post-commit
 ############################################
 # Ellers fra konsol
-# Andre brug bare komandoer fra konsol
+# Andre nyttige komandoer fra konsol
 git tag               # viser alle dine tags.
 git tag -d v0.0.6     # delete tag v0.0.6 # Husk at slet dine tag både her og på git page eller dukker de bare op her igen.
 git status            # status  
-git show v0.0.5       # 
+git show v0.0.5       # viser info om det enkelte tag
 git tag -help         # her finder du mere info.
 
 # Kør fra konsol (terminal):
