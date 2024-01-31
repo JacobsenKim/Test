@@ -244,8 +244,8 @@ if [ -z "$NEEDS_TAG" ]; then
   echo "Tagged with $NEW_TAG"
   git push --tags
   git push
-#  git tag -a $NEW_TAG -m "Version $NEW_TAG"
-#  git tag -s $NEW_TAG -m "Version $NEW_TAG"
+#  git tag -a $NEW_TAG -m "Version $NEW_TAG" # NON signed tag
+#  git tag -s $NEW_TAG -m "Version $NEW_TAG" # signed tag
 #  git tag -v $NEW_TAG  # Verify the signed tag
 #  git push --tags
 #  git push
