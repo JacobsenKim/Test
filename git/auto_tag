@@ -99,7 +99,13 @@ package.json
 virker ikke nu, så spring dette over
 ####################################
 
+https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
+
+
+
 ################
+$ git tag -s v0.0.10
+
 error: gpg failed to sign the data:
 [GNUPG:] BEGIN_SIGNING
 2024/01/30 23:59:14 error signing commit: error signing commit: error making request: 403 | Author can't be blank, Tree can't be blank, Message contains tag fields, error making request: 403 | Author can't be blank, Tree can't be blank, Message contains tag fields
@@ -261,16 +267,17 @@ NEEDS_TAG=`git describe --contains $GIT_COMMIT 2>/dev/null`
 #only tag if no tag already
 #to publish, need to be logged in to npm, and with clean working directory: `npm login; git stash`
 if [ -z "$NEEDS_TAG" ]; then
-  npm version $NEW_TAG
-  npm publish --access public
-  echo "Tagged with $NEW_TAG"
-  git push --tags
-  git push
-#  git tag -a $NEW_TAG -m "Version $NEW_TAG" # NON signed tag
-#  git tag -s $NEW_TAG -m "Version $NEW_TAG" # signed tag
-#  git tag -v $NEW_TAG  # Verify the signed tag
+#  npm version $NEW_TAG
+#  npm publish --access public
+#  echo "Tagged with $NEW_TAG"
 #  git push --tags
 #  git push
+#  git tag -a $NEW_TAG -m "Version $NEW_TAG" # NON signed tag
+  git tag -s $NEW_TAG -m "Version $NEW_TAG" # signed tag
+  echo "Tagged with signed tag $NEW_TAG"
+  git tag -v $NEW_TAG  # Verify the signed tag
+  git push --tags
+  git push
 else
   echo "Already a tag on this commit $CURRENT_VERSION, High $HIGHESTVERSION"
 fi
