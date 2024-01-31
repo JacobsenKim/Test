@@ -117,12 +117,18 @@ Fix:
 
 https://github.com/settings/codespaces
 
+
+
+
 # Then I had to set the environment variables to the values gpg expects:
 export GPG_TTY=$(tty)
 export GIT_COMMITTER_NAME="$(git config --get user.name)"
 export GIT_COMMITTER_EMAIL="$(git config --get user.email)"
 # Finally, I had to replace the gpg.program in Git and set it to /usr/bin/gpg:
 git config --global gpg.program /usr/bin/gpg
+
+echo $GIT_COMMITTER_EMAIL
+export GIT_COMMITTER_EMAIL="your@email.com"
 
 ################
 
