@@ -1,5 +1,9 @@
 ###############################
 Denne virker :-D men mangler oprydning.
+
+To do:
+Mangler at få GPG key til at signere fra min mail og ikke github.
+
 Kilde: https://github.com/unegma/bash-functions/blob/main/update.sh
 ###############################
 Testet på https://github.com/codespaces
@@ -131,7 +135,7 @@ git commit -S -m "My commit message"
 git config --global commit.gpgsign true
 gpgconf --kill gpg-agent
 GPG_TTY=$(tty)
-# Slut pas på ###############################################################
+###############################################################
 
 
 git tag -s $NEW_TAG -m "Version $NEW_TAG"
@@ -140,7 +144,7 @@ git tag -s 0.0.9 -m "Version 0.0.9"
 git tag -s v0.0.10
 git log --show-signature -1
 git tag -v v0.0.9
-#######################################################################################
+##################### Slut pas på ################################################
 
 
  --- script --- --- script --- --- script --- --- script --- --- script --- --- script ---
@@ -221,6 +225,7 @@ if [ -z "$NEEDS_TAG" ]; then
 #  git push --tags
 #  git push
 #  git tag -a $NEW_TAG -m "Version $NEW_TAG" # NON signed tag
+#  echo "Tagged with $NEW_TAG"
   git tag -s $NEW_TAG -m "Version $NEW_TAG" # signed tag
   echo "Tagged with signed tag $NEW_TAG"
   git tag -v $NEW_TAG  # Verify the signed tag
