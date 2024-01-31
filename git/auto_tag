@@ -339,7 +339,7 @@ git status
 #######################################################################################
 
 if [[ -z "$1" ]]; then
-    echo "ERROR: arg must be a description of the release in quotes"
+    echo "ERROR: arg must be a description of the release in quotes, like "major" "minor" "patch" "REMOVE""
     exit 1
 fi
 DESCRIPTION=$1
