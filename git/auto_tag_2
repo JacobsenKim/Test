@@ -4,7 +4,6 @@ Denne virker :-D men mangler oprydning.
 To do:
 Mangler at få GPG key til at signere fra min mail og ikke github.
 
-Kilde: https://github.com/unegma/bash-functions/blob/main/update.sh
 ###############################
 Testet på https://github.com/codespaces
 
@@ -59,7 +58,8 @@ virker ikke nu, så spring dette over for nu
 
 https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
 
-
+Troubleshooting GPG verification for GitHub Codespaces
+https://docs.github.com/en/codespaces/troubleshooting/troubleshooting-gpg-verification-for-github-codespaces
 
 ################
 $ git tag -s v0.0.10
@@ -151,6 +151,7 @@ git tag -v v0.0.9
 
 
 #!/bin/bash
+# Kilde: https://github.com/unegma/bash-functions/blob/main/update.sh
 
 # manuel updating from the root of repository 
 # try: -v [major, minor, patch]
