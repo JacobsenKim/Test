@@ -157,7 +157,8 @@ git tag -v v0.0.9
 
 #!/bin/bash
 # Kilde: https://github.com/unegma/bash-functions/blob/main/update.sh
-
+# change abit by jacobsenkim
+#
 # manuel updating from the root of repository 
 # try: -v [major, minor, patch]
 # ./.git/hooks/post-commit -v patch  # 0.0.1  < denne er sat til standard, ellers kører det ikke auto når man commit.
@@ -165,7 +166,7 @@ git tag -v v0.0.9
 # ./.git/hooks/post-commit -v major  # 1.0.0
 
 
-VERSION="patch"  # Default to patch if not specified
+VERSION="patch"  # Default to patch if not specified at run
 
 #get parameters
 while getopts v: flag
