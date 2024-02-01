@@ -1,0 +1,191 @@
+################################################
+# examples to use in /developer-tools/template #
+################################################
+#
+# Link: https://jacobsenkim.github.io/
+#
+#########################################
+Media player - media_title + media_artist
+#########################################
+value_template: "{{ (state_attr('media_player.kontor', 'media_playlist')) }}"
+value_template: "{{ (state_attr('media_player.kontor', 'media_channel')) }}"
+value_template: "{{ (state_attr('media_player.kontor', 'media_title')) }}"
+value_template: "{{ (state_attr('media_player.kontor', 'media_artist')) }}"
+value_template: "{{ (state_attr('media_player.kontor', 'entity_picture')) }}"
+
+Combined Media player - media_title + media_artist with hide when None
+
+None_template: >-
+  {{ [
+    state_attr('media_player.kontor', 'media_playlist'),
+    state_attr('media_player.kontor', 'media_channel'),
+    state_attr('media_player.kontor', 'media_artist'),
+    state_attr('media_player.kontor', 'media_title')
+  ] | select("string") | join(' - ') }}
+
+
+################################
+OK scraping:  
+        select: ".flex-table__moreinfo-row > :nth-child(2)"
+{% set value = '<strong>13,89 kr.</strong>' %}
+value_template: "{{ value.split('>')[1][0:5] }}"
+value_template: "{{ value.split('>')[1][0:5] | regex_replace(',','.') }}"
+value_template: "{{ value | regex_replace('<[^>]*>', '') | regex_replace(',','.') | regex_replace('[^0-9.]', '') | trim | regex_replace('\\.$', '') }}"
+
+################################
+        
+{% set value_json = {"Time": "2024-02-01 05:00", "UVmeas": 0.0} %}
+
+    
+value_template: '{{ value_json["List"][-1]["UVmeas"] if "List" in value_json else value_json["UVmeas"] }}'
+
+
+Første dag på måned = {{ now().day == 1 }}
+*Sidste dag på måneden = {{ (now() + timedelta(days=1)).day == 1 }}
+Sidste dag på måneden = {{ (now() + timedelta(days=1)).day == 1 and now().day != 1 }}
+
+###########################
+
+Liste over alle entities efter area
+{% for a in areas() %}
+{{ area_name(a) }}
+===================
+{{ area_entities(a) }}
+{% endfor %}
+
+###########################
+
+sensor.pv_economy_income_w_pv - {{ ( states('sensor.pv_economy_income_w_pv') | float(0) | round(5)) }}
+yearly                        - {{ ( states('sensor.yearly_pv_economy_income_w_pv') | float(0) | round(5)) }}
+sensor.export_income_2        - {{ ( states('sensor.export_income_2') | float(0) | round(5)) }}
+sensor.export_yield_sale_2    - {{ ( states('sensor.export_yield_sale_2') | float(0) | round(5)) }}
+
+ 
+  # Sensor that reports the battery charge power
+  - sensor:
+    - name: "Battery Charge Only"
+      unique_id: "battery_charge_only"
+      unit_of_measurement: "W"
+      device_class: power
+      state_class: measurement
+      state: "{{ max(0, states('sensor.battery_charge_discharge_power') | float(0)) }}"
+
+   # Sensor that reports the battery discharge power
+  - sensor:
+    - name: "Battery Discharge Only"
+      unique_id: "battery_discharge_only"
+      unit_of_measurement: "W"
+      device_class: power
+      state_class: measurement
+      state: "{{ -min(0, states('sensor.battery_charge_discharge_power') | float(0)) }}"
+
+#############################################################################
+
+Du har
+Procent = tid tilbage / total tid
+eller hvis du antager procent ikke er 0:
+total tid = tid tilbage / (procent tilbage/100)
+og til sidst
+Tid tilbage = (total tid - tid tilbage) = Tid tilbage * ( 100 / procent tilbage - 1)
+Sæt dette ind i dit udviklerværktøj (developer tools) og tilpas det til dit behov.
+{% set printer_percentage_completed = 25 %}
+{% set printer_minutes_elapsed_from_start_time = 1 %}
+{% if printer_percentage_completed >0 %}
+Total time: {{ printer_minutes_elapsed_from_start_time / (printer_percentage_completed/100) | float }}
+Remaining time: {{ printer_minutes_elapsed_from_start_time * (100/printer_percentage_completed - 1) | float }}
+{% else %}
+Total time: {{ -1 }}
+{% endif %}
+
+#############################################################################
+
+
+Log fil automation.
+  message: >
+    {{ now().strftime('%d/%m/%Y') }}, Inverter Udbytte, {{
+    states.sensor.inverter_daily_yield.state }}, kWh, Inverter Total yield, {{
+    states.sensor.inverter_total_yield.state }}, kWh, Battery Day charge, {{
+    states.sensor.battery_day_charge.state }}, kWh, Battery Day discharge, {{
+    states.sensor.battery_day_discharge.state }}, kWh, Battery Total charge, {{
+    states.sensor.battery_total_charge.state }}, kWh, Battery Total discharge, {{
+    states.sensor.battery_total_discharge.state }}, kWh, Power meter Consumption, {{
+    (states('sensor.power_meter_consumption'))}}, kWh, Power meter Exported, {{
+    (states('sensor.power_meter_exported') | float) }}, kWh
+
+
+
+Strøm udgift denne time i kr.
+{{ (states('sensor.el_kobt_denne_time') | float(0) *
+states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float(0) ) | round(5) }} kr.
+
+{% set results = states('sensor.el_kobt_denne_time') | float * states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float  %}
+results: "-{{ results | round(2) }} kr."
+
+
+{% set value1 = states('sensor.el_kobt_denne_time') | float(0) %}
+{% set value2 = states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
+{% set result = value1 * value2 %}
+result: "{{ -result | round(2) }} kr."
+
+Plug 04:
+{{ ((states('sensor.plug_04_switch_0_power') | float) / 1000) * (states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float) }} kr.
+
+
+precipType
+Vejrudsigt
+
+      - name: "DMI Vejrudsigt"
+        unique_id: "dmi_vejrudsigt"
+        state: "{{ state_attr('sensor.dmi_denne_time', 'windDir') }}"
+        device_class: condition
+        icon: mdi:weather-sunny-alert
+
+m / nettarif_c_time_lavlast_v    1.2450999999999999
+m / nettarif_c_time_hojlast_v    1.5204399999999998
+m / nettarif_c_time_spidslast_v  2.3463
+
+    additional_costs: '{% set s = {
+      "trans_nettarif": 0.09250,
+      "systemtarif": 0.06375,
+      "balancetarif_forbrug": 0.00,
+      "pso_tarif": 0.00,
+      "elafgift": 0.95125,
+      "nettarif_c_time_lavlast_v": 0.1376,
+      "nettarif_c_time_hojlast_v": 0.41294,
+      "nettarif_c_time_spidslast_v": 1.2388,
+      "nettarif_c_time_lavlast_s": 0.1376,
+      "nettarif_c_time_hojlast_s": 0.2065,
+      "nettarif_c_time_spidslast_s": 0.5368,  
+      "abonnement_net": 0.00,
+      "eltillaeg_ellev": 0.00,
+      "abonnement_ellev": 0.00
+        } %}
+        {% if now().month >=10 or now().month <4 %}
+          {% if now().hour >=17 and now().hour <21 %}
+            {{s.trans_nettarif+s.systemtarif+s.balancetarif_forbrug+s.pso_tarif+s.elafgift+s.nettarif_c_time_spidslast_v+s.abonnement_net+s.eltillaeg_ellev+s.abonnement_ellev}}
+          {% else %}
+            {% if now().hour >=6 and now().hour <17 %}
+              {{s.trans_nettarif+s.systemtarif+s.balancetarif_forbrug+s.pso_tarif+s.elafgift+s.nettarif_c_time_hojlast_v+s.abonnement_net+s.eltillaeg_ellev+s.abonnement_ellev}}
+            {% else %}
+              {% if now().hour >=21 or now().hour <0 %}
+                {{s.trans_nettarif+s.systemtarif+s.balancetarif_forbrug+s.pso_tarif+s.elafgift+s.nettarif_c_time_hojlast_v+s.abonnement_net+s.eltillaeg_ellev+s.abonnement_ellev}}
+              {% else %}
+                {{s.trans_nettarif+s.systemtarif+s.balancetarif_forbrug+s.pso_tarif+s.elafgift+s.nettarif_c_time_lavlast_v+s.abonnement_net+s.eltillaeg_ellev+s.abonnement_ellev}}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% else %}
+          {% if now().hour >=17 and now().hour <21 %}
+            {{s.trans_nettarif+s.systemtarif+s.balancetarif_forbrug+s.pso_tarif+s.elafgift+s.nettarif_c_time_spidslast_s+s.abonnement_net+s.eltillaeg_ellev+s.abonnement_ellev}}
+          {% else %}
+            {% if now().hour >=6 and now().hour <17 %}
+              {{s.trans_nettarif+s.systemtarif+s.balancetarif_forbrug+s.pso_tarif+s.elafgift+s.nettarif_c_time_hojlast_s+s.abonnement_net+s.eltillaeg_ellev+s.abonnement_ellev}}
+            {% else %}
+              {% if now().hour >=21 or now().hour <0 %}
+                {{s.trans_nettarif+s.systemtarif+s.balancetarif_forbrug+s.pso_tarif+s.elafgift+s.nettarif_c_time_hojlast_s+s.abonnement_net+s.eltillaeg_ellev+s.abonnement_ellev}}
+              {% else %}
+                {{s.trans_nettarif+s.systemtarif+s.balancetarif_forbrug+s.pso_tarif+s.elafgift+s.nettarif_c_time_lavlast_s+s.abonnement_net+s.eltillaeg_ellev+s.abonnement_ellev}}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}'
