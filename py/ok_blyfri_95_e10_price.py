@@ -29,4 +29,3 @@ if response.status_code == 200:
         print("Fuel price element not found.")
 else:
     print("Failed to retrieve the web page. Status code:", response.status_code)
-

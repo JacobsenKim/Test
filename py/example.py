@@ -40,13 +40,12 @@ for fruit in fruits:
 person = {"name": "Bob", "age": 30, "city": "New York"}
 print("Name:", person["name"])
 
-# Example 7: File Handling
-# Write to a file
+
+# Write to a file in the 'py' directory
 with open("example.txt", "w") as file:
     file.write("Hello, Python!")
 
-# Read from a file in the 'py' folder
-with open("py/example.txt", "r") as file:
+# Read from the file in the 'py' directory
+with open("example.txt", "r") as file:
     content = file.read()
     print("File Content:", content)
-

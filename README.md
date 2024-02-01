@@ -7,6 +7,6 @@ SECURITY.md
 
 LICENSE
 
-post-commit
+post-commit - auto-tag - GPG
 
-auto-tag GPG 
+py
