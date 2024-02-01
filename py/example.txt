@@ -1,0 +1,3 @@
+Hello, Python!
+Her i can write text and display it with Python.
+Even with line break :-D.
