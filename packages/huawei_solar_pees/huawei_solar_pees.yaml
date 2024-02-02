@@ -19,8 +19,8 @@
 # - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
-# - 'nordpool_kwh_dk1_dkk_2_095_025' (price pr. kWh you pay for purchase/import)
-# - 'nordpool_kwh_dk1_dkk_5_095_0' (price pr. kWh you receive for sale/export)
+# - 'sensor.nordpool_kwh_dk1_dkk_2_095_025' (price pr. kWh you pay for purchase/import)
+# - 'sensor.nordpool_kwh_dk1_dkk_5_095_0' (price pr. kWh you receive for sale/export)
 #
 # The currency used in these sensors is DKK by default.
 #
