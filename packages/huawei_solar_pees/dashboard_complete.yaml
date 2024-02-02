@@ -1,0 +1,201 @@
+  - title: huawei_solar_pees
+    path: huawei-solar-pees-test
+    type: sidebar
+    icon: mdi:calculator-variant-outline
+    badges: []
+    cards:
+      - square: false
+        type: grid
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.energy_yield_total
+                type: custom:multiple-entity-row
+                icon: mdi:solar-power-variant-outline
+                name: Yield
+                state_header: Total
+                secondary_info: false
+                format: precision2
+                entities:
+                  - entity: sensor.energy_house_load_yield
+                    name: House
+                    format: precision2
+                  - entity: sensor.energy_battery_charge_yield
+                    name: Battery
+                    format: precision2
+                  - entity: sensor.energy_export
+                    name: Export
+                    format: precision2
+              - entity: sensor.energy_house_load
+                type: custom:multiple-entity-row
+                icon: mdi:home-lightning-bolt-outline
+                name: Consumption
+                state_header: Total
+                secondary_info: false
+                format: precision2
+                entities:
+                  - entity: sensor.energy_house_load_yield
+                    name: Yield
+                    format: precision2
+                  - entity: sensor.energy_battery_discharge_house
+                    name: Battery
+                    format: precision2
+                  - entity: sensor.energy_house_load_grid
+                    name: Import
+                    format: precision2
+            state_color: true
+          - type: entities
+            entities:
+              - entity: sensor.energy_battery_charge
+                type: custom:multiple-entity-row
+                icon: mdi:battery-charging-medium
+                name: Battery
+                state_header: Charge
+                secondary_info: false
+                format: precision2
+                entities:
+                  - entity: sensor.energy_battery_discharge
+                    name: Discharge
+                    format: precision2
+                  - entity: sensor.energy_battery_charge_yield
+                    name: Yield
+                    format: precision2
+                  - entity: sensor.energy_battery_charge_grid
+                    name: Import
+                    format: precision2
+            state_color: true
+          - type: entities
+            entities:
+              - entity: sensor.economy_result_w_pv
+                type: custom:multiple-entity-row
+                name: Economy w PV
+                secondary_info: false
+                state_header: Cost w PV
+                format: precision2
+                entities:
+                  - entity: sensor.economy_expenses_w_pv
+                    name: Import
+                    format: precision2
+                  - entity: sensor.economy_income_w_pv
+                    name: Export
+                    format: precision2
+              - entity: sensor.economy_result_wo_pv
+                type: custom:multiple-entity-row
+                name: Economy wo PV
+                secondary_info: false
+                state_header: Cost wo PV
+                format: precision2
+                entities:
+                  - entity: sensor.energy_house_load
+                    name: Consumption
+                    format: precision2
+              - entity: sensor.economy_nri_pv
+                type: custom:multiple-entity-row
+                name: Net Return
+                secondary_info: false
+                state_header: NRI Total
+                format: precision2
+                entities:
+                  - entity: sensor.economy_nri_battery
+                    name: NRI Battery
+                    format: precision2
+            state_color: true
+        columns: 1
+        view_layout:
+          position: main
+      - square: false
+        type: grid
+        cards:
+          - square: false
+            type: grid
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.power_inverter_input_total
+                      - entity: sensor.power_meter_active_power
+                      - entity: sensor.battery_charge_discharge_power
+                    title: Power
+                  - type: entities
+                    entities:
+                      - entity: sensor.power_inverter_input_total
+                      - entity: sensor.power_inverter_1_input
+                      - entity: sensor.power_inverter_2_input
+                    title: '- Yield'
+                  - type: entities
+                    entities:
+                      - entity: sensor.power_meter_active_power
+                      - entity: sensor.power_export
+                      - entity: sensor.power_export_yield
+                      - entity: sensor.power_import
+                    title: '- Import / Export'
+                  - type: entities
+                    entities:
+                      - entity: sensor.power_house_load
+                      - entity: sensor.power_house_load_yield
+                      - entity: sensor.power_house_load_grid
+                      - entity: sensor.power_battery_discharge_house
+                    title: '- House Load'
+                  - type: entities
+                    entities:
+                      - entity: sensor.battery_charge_discharge_power
+                      - entity: sensor.power_battery_charge
+                      - entity: sensor.power_battery_discharge
+                      - entity: sensor.power_battery_charge_grid
+                      - entity: sensor.power_battery_charge_yield
+                      - entity: sensor.power_battery_discharge_grid
+                      - entity: sensor.power_battery_discharge_house
+                    title: '- Battery Charge / Discharge'
+            columns: 1
+          - square: false
+            type: grid
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: sensor.energy_yield_total
+                      - entity: sensor.energy_import
+                      - entity: sensor.energy_export_yield
+                    title: Energy
+                  - type: entities
+                    entities:
+                      - entity: sensor.energy_yield_total
+                      - entity: sensor.energy_yield_1
+                      - entity: sensor.energy_yield_2
+                    title: '- Yield'
+                  - type: entities
+                    entities:
+                      - entity: sensor.energy_house_load
+                      - entity: sensor.energy_house_load_grid
+                      - entity: sensor.energy_house_load_yield
+                      - entity: sensor.energy_battery_discharge_house
+                    title: '- House'
+                  - type: entities
+                    entities:
+                      - entity: sensor.energy_battery_charge_grid
+                      - entity: sensor.energy_battery_discharge
+                      - entity: sensor.energy_battery_charge_grid
+                      - entity: sensor.energy_battery_charge_yield
+                      - entity: sensor.energy_battery_discharge_grid
+                      - entity: sensor.energy_battery_discharge_house
+                    title: '- Battery'
+            columns: 1
+          - square: false
+            type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.economy_nri_pv
+                  - entity: sensor.economy_nri_battery
+                title: Net Return of Investment
+              - type: entities
+                entities:
+                  - entity: sensor.economy_expenses_w_pv
+                  - entity: sensor.economy_income_w_pv
+                  - entity: sensor.economy_result_w_pv
+                  - entity: sensor.economy_result_wo_pv
+                title: Expenses & Income
+            columns: 1
+        columns: 2
