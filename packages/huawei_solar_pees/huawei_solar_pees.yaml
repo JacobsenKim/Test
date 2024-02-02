@@ -1,7 +1,7 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: v1.0.0 - 2 feb 2024 01:25
+# version: v1.0.0 - 2 feb 2024 01:25 - sensor.energy_yield_2_ps set to 0
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
