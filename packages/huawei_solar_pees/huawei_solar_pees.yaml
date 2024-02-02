@@ -396,7 +396,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -427,7 +427,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('nordpool_kwh_dk1_dkk_5_095_0') | float(0) %}
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_5_095_0') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -458,7 +458,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_house_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -489,7 +489,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('nordpool_kwh_dk1_dkk_5_095_0') | float(0) %}
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_5_095_0') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -520,7 +520,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('nordpool_kwh_dk1_dkk_5_095_0') | float(0) %}
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_5_095_0') | float(0) %}
           {% set meter = states('sensor.energy_export_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -551,7 +551,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
           {% set meter = states('sensor.energy_import_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -582,7 +582,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
           {% set meter = states('sensor.energy_house_load_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -613,7 +613,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
           {% set meter = states('sensor.energy_house_load_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -644,7 +644,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_2_095_025') | float(0) %}
           {% set meter = states('sensor.energy_house_load_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -675,7 +675,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('nordpool_kwh_dk1_dkk_5_095_0') | float(0) %}
+          {% set price = states('sensor.nordpool_kwh_dk1_dkk_5_095_0') | float(0) %}
           {% set meter = states('sensor.energy_export_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
