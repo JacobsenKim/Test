@@ -44,7 +44,8 @@ house_
 import_
 
 
-# Sensor der er slettet, vigtigt at notere ned da det gør næste trin til en leg og uden kan du ikke rigtigt udføre næste trin uden at du kan huske alle sensor i hovedet, samt hvis du har valgt en sensor du ikke skkulle har du en liste over dem du har slettet.
+# Sensor der er slettet, vigtigt at notere ned da det gør næste trin til en leg, uden kan du ikke rigtigt udføre næste trin uden at du kan huske alle sensor i hovedet.
+Samt hvis du har valgt en sensor du ikke skulle har du en liste over dem du har slettet.
 
 Her er min liste:
 
@@ -255,10 +256,9 @@ Jeg brugte igen min søge liste, jeg fandt ikke nogen sensor i dette trin
 
 Genstart og tjek efter om der er noget der er glemt, husk at Tryk Ctrl + F5 flere gange på siderne du benytter for at sikre du har det rigtige live billede.
 
-Slet dashboard fra PEES.
+Slet dit dashboard fra PEES da det ikkke kan genbruges til v1.0.0
 
 
 Bravo du er nu klar til at installere den nye PEES v1.0.0
 Husk nu at slappe lidt af i din musse arm efter denne tur :-D
-
-
+Håber det har gjort det nemere for dig at komme af med den gamle PEES.
