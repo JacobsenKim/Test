@@ -4,6 +4,27 @@
 #
 # Link: https://jacobsenkim.github.io/
 #
+############################################
+Fjerne unknown og unavailable fra en sensor.
+############################################
+Sensor findes ikke: {{ states('sensor.luftkvalitet_0_temperature') }}
+state: >
+  {% set x = states('sensor.luftkvalitet_0_temperature') %}
+  {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0 }}
+
+Sensor findes men slukket: {{ states('sensor.luftkvalitet_01_temperature') }}
+state: >
+  {% set x = states('sensor.luftkvalitet_01_temperature') %}
+  {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0 }}
+
+Sensor findes og tændt: {{ states('sensor.luftkvalitet_02_temperature') }}
+state: >
+  {% set x = states('sensor.luftkvalitet_02_temperature') %}
+  {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0 }}
+
+
+
+
 #########################################
 Media player - media_title + media_artist
 #########################################
