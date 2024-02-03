@@ -35,9 +35,9 @@ If you see the prompt "This entity is no longer being provided..." you can safel
 
 # søgt på:
 
-sensor.battery_
-sensor.economy_
-sensor.energy_
+battery_
+economy_
+energy_
 
 
 # Sensor der er slettet, vigtigt at notere ned da det gør næste trin til en leg og uden kan du ikke rigtigt udføre næste trin uden at du kan huske alle sensor i hovedet.
