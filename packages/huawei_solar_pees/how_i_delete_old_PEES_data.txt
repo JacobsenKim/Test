@@ -1,15 +1,15 @@
 # Af: https://github.com/JacobsenKim
 #
+# https://github.com/JacobsenKim/Test/blob/main/packages/huawei_solar_pees/how_i_delete_old_PEES_data.txt
+#
 # Som den skarpe nok kan se så er der flere sensor fra den nye pakke listet, det er fordi dette er lavet på den nye pakke.
 # Dette er et eksemple, du skal selv lave din liste over søg og sensor.
-#
+# 
 #####################################################################################################
 #####################################################################################################
 # Husk som altid før der laves ændringer, laver vi lige en fuld backup af vores HA som det første.
 #####################################################################################################
 #####################################################################################################
-
-
 #####################################################################################################
 States:
 Go to "Developer tools > States" and search for the sensors you wish to delete.
