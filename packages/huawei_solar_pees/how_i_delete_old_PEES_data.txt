@@ -10,6 +10,17 @@
 # Husk som altid før der laves ændringer, laver vi lige en fuld backup af vores HA som det første.
 #####################################################################################################
 #####################################################################################################
+
+Fjern filen /homeassistant/packages/huawei_solar_pees.yaml
+
+Mærke med # ud for 
+
+#  packages: !include_dir_named packages
+ Or if you use it at file level
+#    huawei_solar_pees: !include packages/huawei_solar_pees.yaml
+
+I /homeassistant/configuration.yaml og lavet en fuld genstarte af HA
+
 #####################################################################################################
 States:
 Go to "Developer tools > States" and search for the sensors you wish to delete.
@@ -124,6 +135,8 @@ Klik øverst til højre for at sortere listen så vi får alle de røde øverst.
 Vægl alle de sensor du kan se der hører til PEES, øverst til højre klik på "FJERN VALGTE"
 
 Genstart og tjek efter om der er noget der er glemt, husk at Tryk Ctrl + F5 flere gange på siderne du benytter for at sikre du har det rigtige live billede.
+
+Slet dashboard fra PEES.
 
 
 Bravo du er nu klar til at installere den nye PEES v1.0.0
