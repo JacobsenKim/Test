@@ -241,7 +241,11 @@ export_
 house_
 import_
 
-
+yearly
+quarterly
+monthly
+daily
+hourly
 
 #####################################################################################################
 Entities: Finally go to "Settings > Devices & Services > Entities" and look for sensors marked with the red logo for "Restored". Click on the sensor. Click on the cogwheel and choose "Delete".
@@ -252,11 +256,11 @@ Klik øverst til højre "Status" for at sortere listen så vi får alle de røde
 
 Vægl alle de sensor du kan se der hører til PEES, øverst til højre klik på "FJERN VALGTE"
 
-Jeg brugte igen min søge liste, jeg fandt ikke nogen sensor i dette trin
+Jeg brugte igen min søge liste, fandt ikke nogen PEES sensor i dette trin
 
 Genstart og tjek efter om der er noget der er glemt, husk at Tryk Ctrl + F5 flere gange på siderne du benytter for at sikre du har det rigtige live billede.
 
-Slet dit dashboard fra PEES da det ikkke kan genbruges til v1.0.0
+Slet dashboard fra PEES da det ikke kan genbruges til v1.0.0
 
 
 Bravo du er nu klar til at installere den nye PEES v1.0.0
