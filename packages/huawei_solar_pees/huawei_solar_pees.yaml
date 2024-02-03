@@ -40,6 +40,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_battery_charge_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_battery_charge_grid
     name: "Energy Battery Charge Grid (ps)"
@@ -48,6 +51,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_battery_charge_grid_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_battery_charge_yield
     name: "Energy Battery Charge Yield (ps)"
@@ -56,6 +62,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_battery_charge_yield_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_battery_discharge
     name: "Energy Battery Discharge (ps)"
@@ -64,6 +73,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_battery_discharge_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_battery_discharge_grid
     name: "Energy Battery Discharge Grid (ps)"
@@ -72,6 +84,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_battery_discharge_grid_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_battery_discharge_house
     name: "Energy Battery Discharge House (ps)"
@@ -80,6 +95,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_battery_discharge_house_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_import
     name: "Energy Import (ps)"
@@ -88,6 +106,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_import_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_export
     name: "Energy Export (ps)"
@@ -96,6 +117,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_export_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_house_load
     name: "Energy House Load (ps)"
@@ -104,6 +128,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_house_load_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_house_load_grid
     name: "Energy House Load Grid (ps)"
@@ -112,6 +139,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_house_load_grid_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_house_load_yield
     name: "Energy House Load Yield (ps)"
@@ -120,6 +150,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_house_load_yield_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_inverter_1_input
     name: "Energy Yield #1 (ps)"
@@ -128,6 +161,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_yield_1_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_inverter_2_input
     name: "Energy Yield #2 (ps)"
@@ -136,6 +172,9 @@ sensor:
     unit_prefix: k
     unit_time: h
     method: left
+    state: >
+      {% set x = states('sensor.energy_yield_2_ps') %}
+      {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
   - platform: integration
     source: sensor.power_export_yield
     name: "Energy Export Yield (ps)"
