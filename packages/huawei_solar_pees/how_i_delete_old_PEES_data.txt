@@ -4,6 +4,13 @@
 # Dette er et eksemple, du skal selv lave din liste over søg og sensor.
 #
 #####################################################################################################
+#####################################################################################################
+# Husk som altid før der laves ændringer, laver vi lige en fuld backup af vores HA som det første.
+#####################################################################################################
+#####################################################################################################
+
+
+#####################################################################################################
 States:
 Go to "Developer tools > States" and search for the sensors you wish to delete.
 Use the "Filter entities" to locate them. Click on the "i" and the "cogwheel".
