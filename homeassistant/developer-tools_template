@@ -4,6 +4,26 @@
 #
 # Link: https://github.com/JacobsenKim/Test/blob/main/homeassistant/developer-tools_template
 #
+################################################
+
+Print out a list of all the sensor states sorted by entity_id:
+{% for state in states.sensor | sort(attribute='entity_id') %}
+  {{ state.entity_id }}={{ state.state }},
+{% endfor %}
+
+
+Print out a list of all the sensor states:
+{% for state in states.sensor %}
+  {{ state.entity_id }}={{ state.state }},
+{% endfor %} 
+
+Print out a list of selected sensor states:
+{% for state in states.sensor %}
+  {% if 'battery_' in state.entity_id or 'economy_' in state.entity_id or 'energy_' in state.entity_id or 'power_' in state.entity_id or 'export_' in state.entity_id or 'house_' in state.entity_id or 'import_' in state.entity_id or 'yearly' in state.entity_id or 'quarterly' in state.entity_id or 'monthly' in state.entity_id or 'daily' in state.entity_id or 'hourly' in state.entity_id %}
+    {{ state.entity_id }} = {{ state.state }},
+  {% endif %}
+{% endfor %}
+
 ############################################
 Fjerne unknown og unavailable fra en sensor.
 ############################################
