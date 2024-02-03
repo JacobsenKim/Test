@@ -260,6 +260,7 @@ Jeg brugte igen min søge liste, fandt ikke nogen PEES sensor i dette trin
 
 Genstart og tjek efter om der er noget der er glemt, husk at Tryk Ctrl + F5 flere gange på siderne du benytter for at sikre du har det rigtige live billede.
 
+
 Slet dashboard fra PEES da det ikke kan genbruges til v1.0.0
 
 
