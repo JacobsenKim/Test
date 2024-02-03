@@ -4,7 +4,7 @@
 #
 # 
 # Dette er et eksemple, du skal selv lave din liste over sensor.
-# 
+# Der er ingen garanti for jeg har fået alle med, eller om jeg har fået for meget med.
 #####################################################################################################
 #####################################################################################################
 # Husk som altid før der laves ændringer, laver vi lige en fuld backup af vores HA som det første.
@@ -247,9 +247,11 @@ Entities: Finally go to "Settings > Devices & Services > Entities" and look for 
 #####################################################################################################
 
 
-Klik øverst til højre for at sortere listen så vi får alle de røde øverst.
+Klik øverst til højre "Status" for at sortere listen så vi får alle de røde øverst.
 
 Vægl alle de sensor du kan se der hører til PEES, øverst til højre klik på "FJERN VALGTE"
+
+Jeg brugte igen min søge liste, jeg fandt ikke nogen sensor i dette trin
 
 Genstart og tjek efter om der er noget der er glemt, husk at Tryk Ctrl + F5 flere gange på siderne du benytter for at sikre du har det rigtige live billede.
 
