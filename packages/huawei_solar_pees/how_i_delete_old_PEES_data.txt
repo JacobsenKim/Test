@@ -1,0 +1,125 @@
+# Af: https://github.com/JacobsenKim
+#
+# Som den skarpe nok kan se så er der flere sensor fra den nye pakke listet, det er fordi dette er lavet på den nye pakke.
+# Dette er et eksemple, du skal selv lave din liste over søg og sensor.
+#
+#####################################################################################################
+States:
+Go to "Developer tools > States" and search for the sensors you wish to delete.
+Use the "Filter entities" to locate them. Click on the "i" and the "cogwheel".
+If you see the prompt "This entity is no longer being provided..." you can safely delete the sensor.
+#####################################################################################################
+
+# Tryk Ctrl + F5 flere gange på siden.
+
+# Se så efter sensor med tilstand "unavailable"
+# I "Tilstands feltet" indsæt "unavailable", følg så overstående.
+
+# søgt på:
+
+sensor.battery_
+sensor.economy_
+sensor.energy_
+
+
+# Sensor der er slettet, vigtigt at notere ned da det gør næste trin til en leg og uden kan du ikke rigtigt udføre næste trin uden at du kan huske alle sensor i hovedet.
+
+sensor.battery_charge_grid_cost
+sensor.battery_charge_grid_cost_tt
+sensor.battery_charge_yield_sale
+sensor.battery_charge_yield_sale_tt
+sensor.battery_discharge_grid_sale
+sensor.battery_discharge_grid_sale_tt
+sensor.battery_discharge_house_saving
+sensor.battery_discharge_house_saving_tt
+sensor.economy_nri_battery
+sensor.economy_nri_battery_ts
+sensor.energy_battery_charge
+sensor.energy_battery_charge_grid
+sensor.energy_battery_charge_grid_ps
+sensor.energy_battery_charge_ps
+
+OSV.....................................................
+
+#####################################################################################################
+Services:
+In "Developer tools > Services" you can target specific sensors and purge them with the service "Recorder: Purge entities"
+#####################################################################################################
+
+####### eksempel #############
+service: recorder.purge_entities
+target:
+  entity_id:
+    - sensor.battery_charge_grid_cost
+    - sensor.battery_charge_yield_sale
+    
+data:
+  domains: []
+  entity_globs: []
+  keep_days: 0
+
+######### eksempel slut #########
+
+Generere med chat-gpt lige til copy past in i Recorder: Purge entities :-D
+Jeg kopiere min liste af slettede sensor ovenfor ind i chat-gpt og ? om
+
+#
+can you make this list like this
+
+    - sensor.battery_charge_grid_cost
+    - sensor.battery_charge_yield_sale
+
+4 x space then - and one space then the sensor
+#
+
+Vupti så har man en list med korrekt indrykning lige til at kopiere ind i Recorder: Purge entities
+
+    - sensor.battery_charge_grid_cost
+    - sensor.battery_charge_grid_cost_tt
+    - sensor.battery_charge_yield_sale
+    - sensor.battery_charge_yield_sale_tt
+    - sensor.battery_discharge_grid_sale
+    - sensor.battery_discharge_grid_sale_tt
+    - sensor.battery_discharge_house_saving
+    - sensor.battery_discharge_house_saving_tt
+    - sensor.economy_nri_battery
+    - sensor.economy_nri_battery_ts
+    - sensor.energy_battery_charge
+    - sensor.energy_battery_charge_grid
+    - sensor.energy_battery_charge_grid_ps
+    - sensor.energy_battery_charge_ps
+
+#####################################################################################################
+Statistics:
+Go to "Developer tools > Statistics" and find the sensors highlighted with "Fix issue".
+Click on "Fix issue" and choose to delete the relevant sensors.
+
+Hvis den giver dig et valg og ikke kun "annulere eller slet", så har du ikke slettet sensor som anvist ovenfor.
+#####################################################################################################
+
+
+Her er min søge liste jeg noterede ved første step, den genvbruger jeg her.
+søg på:
+
+sensor.battery_
+sensor.economy_
+sensor.energy_
+
+
+
+#####################################################################################################
+Entities: Finally go to "Settings > Devices & Services > Entities" and look for sensors marked with the red logo for "Restored". Click on the sensor. Click on the cogwheel and choose "Delete".
+#####################################################################################################
+
+
+Klik øverst til højre for at sortere listen så vi får alle de røde øverst.
+
+Vægl alle de sensor du kan se der hører til PEES, øverst til højre klik på "FJERN VALGTE"
+
+Genstart og tjek efter om der er noget der er glemt, husk at Tryk Ctrl + F5 flere gange på siderne du benytter for at sikre du har det rigtige live billede.
+
+
+Bravo du er nu klar til at installere den nye PEES v1.0.0
+Husk nu at slappe lidt af i din musse arm efter denne tur :-D
+
+
