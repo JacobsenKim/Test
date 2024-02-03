@@ -2,8 +2,8 @@
 #
 # https://github.com/JacobsenKim/Test/blob/main/packages/huawei_solar_pees/how_i_delete_old_PEES_data.txt
 #
-# Som den skarpe nok kan se så er der flere sensor fra den nye pakke listet, det er fordi dette er lavet på den nye pakke.
-# Dette er et eksemple, du skal selv lave din liste over søg og sensor.
+# 
+# Dette er et eksemple, du skal selv lave din liste over sensor.
 # 
 #####################################################################################################
 #####################################################################################################
@@ -38,26 +38,83 @@ If you see the prompt "This entity is no longer being provided..." you can safel
 battery_
 economy_
 energy_
+power_
+export_
+house_
+import_
 
 
-# Sensor der er slettet, vigtigt at notere ned da det gør næste trin til en leg og uden kan du ikke rigtigt udføre næste trin uden at du kan huske alle sensor i hovedet.
+# Sensor der er slettet, vigtigt at notere ned da det gør næste trin til en leg og uden kan du ikke rigtigt udføre næste trin uden at du kan huske alle sensor i hovedet, samt hvis du har valgt en sensor du ikke skkulle har du en liste over dem du har slettet.
+
+Her er min liste:
+
+Slettet:
 
 sensor.battery_charge_grid_cost
-sensor.battery_charge_grid_cost_tt
+sensor.battery_charge_grid_cost_2
 sensor.battery_charge_yield_sale
-sensor.battery_charge_yield_sale_tt
+sensor.battery_charge_yield_sale_2
 sensor.battery_discharge_grid_sale
-sensor.battery_discharge_grid_sale_tt
+sensor.battery_discharge_grid_sale_2
 sensor.battery_discharge_house_saving
-sensor.battery_discharge_house_saving_tt
-sensor.economy_nri_battery
-sensor.economy_nri_battery_ts
+sensor.battery_discharge_house_saving_2
 sensor.energy_battery_charge
 sensor.energy_battery_charge_grid
-sensor.energy_battery_charge_grid_ps
-sensor.energy_battery_charge_ps
+sensor.energy_battery_charge_yield
+sensor.energy_battery_discharge
+sensor.energy_battery_discharge_grid
+sensor.energy_battery_discharge_house
+sensor.power_battery_charge
+sensor.power_battery_charge_grid
+sensor.power_battery_charge_yield
+sensor.power_battery_discharge
+sensor.power_battery_discharge_grid
+sensor.power_battery_discharge_house
 
-OSV.....................................................
+sensor.pv_economy_expenses_w_pv
+sensor.pv_economy_income_w_pv
+sensor.pv_economy_nri_battery
+sensor.pv_economy_nri_pv
+sensor.pv_economy_result_w_pv
+sensor.pv_economy_result_wo_pv
+
+sensor.energy_export
+sensor.energy_export_yield
+sensor.energy_house_load
+sensor.energy_house_load_grid
+sensor.energy_house_load_yield
+sensor.energy_yield_total
+sensor.energy_yield_2
+sensor.energy_yield_1
+sensor.energy_import
+
+sensor.power_inverter_input_total
+sensor.power_inverter_2_input
+sensor.power_inverter_1_input
+sensor.power_import
+sensor.power_house_load_yield
+sensor.power_house_load_grid
+sensor.power_house_load
+sensor.power_export_yield
+sensor.power_export
+
+sensor.export_income
+sensor.export_income_2
+sensor.export_yield_sale
+sensor.export_yield_sale_2
+
+sensor.house_consumption_power
+sensor.house_load_cost
+sensor.house_load_cost_2
+sensor.house_load_grid_cost
+sensor.house_load_grid_cost_2
+sensor.house_load_yield_saving
+sensor.house_load_yield_saving_2
+
+
+sensor.import_cost
+sensor.import_cost_2
+
 
 #####################################################################################################
 Services:
@@ -92,20 +149,74 @@ can you make this list like this
 
 Vupti så har man en list med korrekt indrykning lige til at kopiere ind i Recorder: Purge entities
 
+Her er min liste jeg har Purge:
+
+service: recorder.purge_entities
+target:
+  entity_id:
     - sensor.battery_charge_grid_cost
-    - sensor.battery_charge_grid_cost_tt
+    - sensor.battery_charge_grid_cost_2
     - sensor.battery_charge_yield_sale
-    - sensor.battery_charge_yield_sale_tt
+    - sensor.battery_charge_yield_sale_2
     - sensor.battery_discharge_grid_sale
-    - sensor.battery_discharge_grid_sale_tt
+    - sensor.battery_discharge_grid_sale_2
     - sensor.battery_discharge_house_saving
-    - sensor.battery_discharge_house_saving_tt
-    - sensor.economy_nri_battery
-    - sensor.economy_nri_battery_ts
+    - sensor.battery_discharge_house_saving_2
     - sensor.energy_battery_charge
     - sensor.energy_battery_charge_grid
-    - sensor.energy_battery_charge_grid_ps
-    - sensor.energy_battery_charge_ps
+    - sensor.energy_battery_charge_yield
+    - sensor.energy_battery_discharge
+    - sensor.energy_battery_discharge_grid
+    - sensor.energy_battery_discharge_house
+    - sensor.power_battery_charge
+    - sensor.power_battery_charge_grid
+    - sensor.power_battery_charge_yield
+    - sensor.power_battery_discharge
+    - sensor.power_battery_discharge_grid
+    - sensor.power_battery_discharge_house
+    - sensor.pv_economy_expenses_w_pv
+    - sensor.pv_economy_income_w_pv
+    - sensor.pv_economy_nri_battery
+    - sensor.pv_economy_nri_pv
+    - sensor.pv_economy_result_w_pv
+    - sensor.pv_economy_result_wo_pv
+    - sensor.energy_export
+    - sensor.energy_export_yield
+    - sensor.energy_house_load
+    - sensor.energy_house_load_grid
+    - sensor.energy_house_load_yield
+    - sensor.energy_yield_total
+    - sensor.energy_yield_2
+    - sensor.energy_yield_1
+    - sensor.energy_import
+    - sensor.power_inverter_input_total
+    - sensor.power_inverter_2_input
+    - sensor.power_inverter_1_input
+    - sensor.power_import
+    - sensor.power_house_load_yield
+    - sensor.power_house_load_grid
+    - sensor.power_house_load
+    - sensor.power_export_yield
+    - sensor.power_export
+    - sensor.export_income
+    - sensor.export_income_2
+    - sensor.export_yield_sale
+    - sensor.export_yield_sale_2
+    - sensor.house_consumption_power
+    - sensor.house_load_cost
+    - sensor.house_load_cost_2
+    - sensor.house_load_grid_cost
+    - sensor.house_load_grid_cost_2
+    - sensor.house_load_yield_saving
+    - sensor.house_load_yield_saving_2
+    - sensor.import_cost
+    - sensor.import_cost_2
+data:
+  domains: []
+  entity_globs: []
+  keep_days: 0
+
+
 
 #####################################################################################################
 Statistics:
@@ -119,9 +230,15 @@ Hvis den giver dig et valg og ikke kun "annulere eller slet", så har du ikke sl
 Her er min søge liste jeg noterede ved første step, den genvbruger jeg her.
 søg på:
 
-sensor.battery_
-sensor.economy_
-sensor.energy_
+Tip. Gør browser smalder så du ikke skal flytte musen så meget :-D
+
+battery_
+economy_
+energy_
+power_
+export_
+house_
+import_
 
 
 
