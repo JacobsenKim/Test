@@ -7,22 +7,45 @@
 ############################################
 Fjerne unknown og unavailable fra en sensor.
 ############################################
+https://community.home-assistant.io/t/use-last-value-instead-of-unknown/614331/5
+
+how do you set the last known value before it goes to unknown?
+
+Use this.state to get the last known value.
+
+In the following example (a fragment of a Template Sensor), if the value of sensor.outside_temp is not unknown or unavailable then that value is reported. Otherwise the Template Sensor uses its existing value (this.state).
+
+  state: >
+    {% set x = states('sensor.outside_temp') %}
+    {{ x if has_value(x) else this.state | default(0, true) }}
+The default is there for this reason:
+When you first create the Template Sensor, it won’t have an existing value for this.state. So if at that moment sensor.outside_temp has the bad luck of being unknown or unavailable then default will be used to report 0.
+
+########################
+
 Sensor findes ikke: {{ states('sensor.luftkvalitet_0_temperature') }}
 state: >
   {% set x = states('sensor.luftkvalitet_0_temperature') %}
-  {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0 }}
+  {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
 
 Sensor findes men slukket: {{ states('sensor.luftkvalitet_01_temperature') }}
 state: >
   {% set x = states('sensor.luftkvalitet_01_temperature') %}
-  {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0 }}
+  {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
 
 Sensor findes og tændt: {{ states('sensor.luftkvalitet_02_temperature') }}
 state: >
   {% set x = states('sensor.luftkvalitet_02_temperature') %}
-  {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0 }}
+  {{ x if (x != 'unavailable' and x != 'unknown' and x is not none) else 0.0 }}
 
-
+Her en anden måde at gøre det på
+Sensor findes og tændt: {{ states('sensor.luftkvalitet_02_temperature') }}
+      value_template: >-
+        {% if states('sensor.luftkvalitet_02_temperature') not in ['unknown', 'unavailable'] %}
+          {{ states('sensor.luftkvalitet_02_temperature')|round(2) }}
+        {% else %}
+          {{ ( states ('0.0'))|float(0)|round(2) }}
+        {% endif %}
 
 
 #########################################
