@@ -7,6 +7,7 @@
 
 
 import os
+import zipfile
 
 # Function to process a single SQL file
 def process_sql(input_file, output_file):
@@ -32,4 +33,11 @@ for filename in os.listdir(input_directory):
         output_file = os.path.join(output_directory, filename)
         process_sql(input_file, output_file)
 
+        # Create a zip file for the processed SQL file
+        zip_filename = os.path.join(output_directory, filename + '.zip')
+        with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            zipf.write(output_file, os.path.basename(output_file))
+
 print("Conversion complete.")
+
+
