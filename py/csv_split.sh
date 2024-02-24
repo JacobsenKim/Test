@@ -2,20 +2,31 @@
 #
 # To spilt large .csv files to smaler ones.
 #
+# Copy csv_split.sh to youre HOME dir
+#
 # chmod +x csv_split.sh
 #
 ## Run like: 
 # ./csv_split.sh youre_csv_file_to_split.csv 
 #
-input_file="$1"
+##############################################
+# Change to youre working dir.
+#
+workdir="$HOME/Hentet/HA_mariaDB/output"
+#
+##############################################
+#
+input_file="$workdir/$1"
 input_file_name="${input_file##*/}"
 split_prefix="${input_file_name%.*}_split_"
-split_directory="$HOME/Hentet/HA_mariaDB/output/split_${input_file_name%.*}/"
+split_directory="$workdir/split_${input_file_name%.*}"
 
 # Check if the split directory exists, create it if it doesn't
 if [ ! -d "$split_directory" ]; then
     mkdir -p "$split_directory"
 fi
+
+echo "Split in progress..."
 
 # Split the input file into smaller files within the split folder
 split -a 3 -d -l 10000 "$input_file" "${split_directory}/${split_prefix}"
@@ -28,5 +39,5 @@ for file in "${split_directory}/${split_prefix}"*; do
 done
 
 echo "############################################"
-echo "All good, it is split. Look at $split_directory for youre split csv files"
+echo "Split in progress finish.... Look at $split_directory for youre split csv files"
 echo "############################################"
