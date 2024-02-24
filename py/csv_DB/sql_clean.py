@@ -18,6 +18,9 @@ def process_sql(input_file, output_file):
                 continue
             # Replace double quotes with nothing
             cleaned_line = line.replace('"', '')
+            # Replace \' with \'\'
+            if 'events.sql' in input_file:
+                cleaned_line = cleaned_line.replace("\\'", "\\\\'")
             outfile.write(cleaned_line)
 
 # Directory containing the SQL files
@@ -39,5 +42,6 @@ for filename in os.listdir(input_directory):
             zipf.write(output_file, os.path.basename(output_file))
 
 print("Conversion complete.")
+
 
 
