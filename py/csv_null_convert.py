@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-
-
+#chmod +x csv_clean.py
+#python3 csv_null_convert.py
+#
 import os
 import csv
 
