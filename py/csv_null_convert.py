@@ -2,6 +2,24 @@
 #chmod +x csv_clean.py
 #python3 csv_null_convert.py
 #
+############################################################################
+# To split csv file to small size run in console in same dir as the .csv file
+############################################################################
+#input_file="statistics.csv"
+#split_prefix="0_split_${input_file%.*}_"
+#split_directory="/home/kim/Hentet/HA_mariaDB/output/split/"
+#
+#split -a 2 -d -l 10000 "$input_file" "${split_prefix}"
+#
+#for file in ${split_prefix}*; do
+#    mv "$file" "${split_directory}${split_prefix}${file##*_}.csv"
+#done
+############################################################################
+
+#
+#
+#
+
 import os
 import csv
 
