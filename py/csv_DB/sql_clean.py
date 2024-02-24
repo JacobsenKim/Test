@@ -23,6 +23,8 @@ def process_sql(input_file, output_file):
 input_directory = '/home/kim/Hentet/HA_mariaDB/input'
 output_directory = '/home/kim/Hentet/HA_mariaDB/output'
 
+print("Conversion in progress....")
+
 # Iterate through each file in the input directory
 for filename in os.listdir(input_directory):
     if filename.endswith('.sql'):
