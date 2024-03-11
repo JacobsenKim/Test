@@ -6,6 +6,13 @@
 #
 ################################################
 
+{{ states.weather.vejrudsigt_hjem.attributes }}
+
+
+ **{{ state_attr('weather.vejrudsigt_hjem', 'temperature') }}**
+ **{{ state_attr('weather.vejrudsigt_hjem', 'humidity') }}**
+
+
 This will list all your entities, without their attributes or actual states.
 
 {% for state in states %}
