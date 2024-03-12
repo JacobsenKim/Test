@@ -6,8 +6,14 @@
 #
 ################################################
 
-{{ states.weather.vejrudsigt_hjem.attributes }}
+# Translated
+{{ state_translated("sun.sun") }}  # Shows:  Under horisonten
 
+{{ states('weather.vejrudsigt_hjem') }}  # Shows: cloudy
+{{ state_translated('weather.vejrudsigt_hjem') }} # Shows: Overskyet
+
+
+{{ states.weather.vejrudsigt_hjem.attributes }}
 
  **{{ state_attr('weather.vejrudsigt_hjem', 'temperature') }}**
  **{{ state_attr('weather.vejrudsigt_hjem', 'humidity') }}**
